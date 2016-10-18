@@ -6,11 +6,9 @@
 				<Image File="Assets/menu.png" Width="30" Height="30" Margin="10"/>
 				<Clicked>
 					<Scale Factor="0.8" Duration=".15" Easing="CubicInOut" />
-<!--					<Set state.Active="loginButtonState" />
--->
 				</Clicked>
 			</Grid>
-			<Text ux:Name="titleText" Value="Here, I am" TextColor="White" FontSize="25" Alignment="Center"/>
+			<Text ux:Name="titleText" Value="Here!" TextColor="White" FontSize="25" Alignment="Center"/>
 			<Image File="Assets/search.png" Width="30" Height="30" Margin="10"/>
 		</Grid>
 
@@ -67,6 +65,7 @@
 			<!--page animation-->
 			<Page ux:Name="page1">
 				<CoursePage />
+
 				<WhileActive Threshold="0.5">
 					<Set shrinkIndicatorWidth.Value="false" />
 					<Set indicatorColorAttractor.Value="SkyBlue" />

@@ -1,53 +1,219 @@
-<Panel ux:Name="CoursePage">
-	<DockPanel ux:Class="CourseView" Padding="10" Color="#eee" Height="100" Margin="10">
-		<string ux:Property="Course" />
-		<string ux:Property="Time" />
-		<float4 ux:Property="CircleColor" />
+<Panel ux:Class="CoursePage">
 
-		<Circle Color="{Property CircleColor}" Dock="Right" Width="30" Height="30" />
+	<Panel ux:Class="Course">
+		<Rectangle Color="White" CornerRadius="6" Height="100" Margin="10"> 
+			<Clicked>
+				<Toggle Target="bottomShowUp" />
+			</Clicked>
+			<string ux:Property="Time" />
+			<string ux:Property="CourseName" />
+			<float4 ux:Property="CircleColor" />
+			<DropShadow />
 
-		<Text Alignment="VerticalCenter" FontSize="30" Dock="Left" Color="Black" Value="{Property Time}" />
+ 			<DockPanel Padding="10" Margin="10">
+				<Text Value="{Property Time}" Alignment="VerticalCenter" FontSize="30" Dock="Left" Color="Black">
+					<Font File="Assets/Fonts/Dosis-Medium.otf"/>
+				</Text>
+				
+				<Text Value="{Property CourseName}" Alignment="Center" FontSize="20" Color="Black" >
+					 <Font File="Assets/Fonts/Dosis-Medium.otf"/>
+				</Text>
+			
+				<Circle Color="{Property CircleColor}" Dock="Right" Width="30" Height="30">
+					<DropShadow />
+				</Circle>				
+			</DockPanel>  
+		</Rectangle>
 
-		<Text Alignment="Center" FontSize="30" Color="Black" Value="{Property Course}" />
-	</DockPanel>
-	
+		<!--enter time and exit time-->
+		<Panel ux:Name="bottomPanel" Width="93%" Height="90%" Opacity="0">
+			<string ux:Property="EnterTime" />
+			<string ux:Property="ExitTime" />
+			<Rectangle Layer="Background" Color="#a0ddcf" CornerRadius="5">
+				
+				<Grid Rows="20,20,1*" ColumnCount="2" Alignment="Bottom" Height="30%" Padding="20,10">
+					<StackPanel Orientation="Horizontal">
+						<Image Width="25" Height="20" File="Assets/imageedit_3_9622675366.png" />
+						<Text ux:Name="enter" Value="Enter: " Color="White" FontSize="20" >
+							<Font File="Assets/Fonts/Dosis-Medium.otf"/>
+						</Text>
+						<Text Value="{Property EnterTime}"   Color="White" FontSize="20"/>
+							
+					</StackPanel>
+					<StackPanel Orientation="Horizontal">
+						<Image Width="25" Height="20" File="Assets/imageedit_6_3927383195.png" />
+						<Text Value="Exit: " Color="White" FontSize="20" >
+							<Font File="Assets/Fonts/Dosis-Medium.otf"/>
+						</Text>
+						<Text Value="{Property ExitTime}" Color="White" FontSize="20"/>
+					</StackPanel>						
+				</Grid>
+			</Rectangle>
+			<DropShadow />
+		</Panel>
+
+		<WhileTrue ux:Name="bottomShowUp">
+			<Change bottomPanel.Opacity="1" Duration="0.3" />
+			<Move Target="bottomPanel" Y="0.6" RelativeTo="Size" Duration="0.3" />
+		</WhileTrue>
+	</Panel>
+
 	<JavaScript>
-		var Observable = require("FuseJS/Observable");
+		var Observable = require('FuseJS/Observable');
+		courses = Observable();
 
-		var classes = Observable();
-
-		function simulateLoad() {
+		// get an array of course info and update
+		function loadCourses() {
 			setTimeout(function() {
-				classes.replaceAll([
+				courses.replaceAll([
 			{
-				course: "Fuse 101",
-				time: "13:45",
-				circleColor: "#f00"
+				time: "09:00",
+				name: "Programming Principles",
+				color: "#1e852f",
+				enter: "08:56",
+				exit: "10:52"
 			},
 			{
-				course: "Fuse 201",
-				time: "14:45",
-				circleColor: "#0f0"
+				time: "11:00",
+				name: "Operating System",
+				color: "#ec0707",
+				enter: "08:56",
+				exit: "10:52"
 			},
 			{
-				course: "Fuse 301",
-				time: "15:45",
-				circleColor: "#ff0"
+				time: "15:30",
+				name: "Database",
+				color: "#ff0",
+				enter: "08:56",
+				exit: "10:52"
+			},
+			{
+				time: "15:30",
+				name: "Database",
+				color: "#ff0",
+				enter: "08:56",
+				exit: "10:52"
 			}
 			]);
-			}, 500);
+			}, 0);
 		}
 
+		loadCourses();
+
 		module.exports = {
-			classes: classes
+			courses : courses
 		};
 	</JavaScript>
 
-	<StackPanel>
-		<Circle />
-		<Each Items="{classes}" >
-			<CourseView Course="{course}" Time="{time}" CircleColor="{cicleColor}" />
-		</Each>
-	</StackPanel>
-	<Text Value="Hi"/>
+	<Panel ux:Class="CogWheelReload" ClipToBounds="True">
+		
+		<Image ux:Class="Cog" MaxHeight="200" MaxWidth="200" Alignment="Center" />
+		<Cog ux:Class="SmallCog" Color="#8c508e" File="Assets/cog1_white.png" Width="60" Height="60" />
+		<Cog ux:Class="BigCog" Color="#684c7c" File="Assets/cog2_white.png" Width="120" Height="120" />
+
+		<!-- places all cog wheels and move rotates them so they fit together -->
+		<Panel ux:Name="cogPanel" Background="#a58a9a" Alignment="Top" Dock="Top" Height="0" MinHeight="0">
+
+			<Text Value="Updating..." Alignment="Center" FontSize="30"/>
+			<SmallCog ux:Name="cog1">
+				<Rotation ux:Name="cog1Rotation" />
+			</SmallCog>
+			<BigCog ux:Name="cog2" Offset="60,-60">
+				<Translation ux:Name="cog2Trans" Y="-100" />
+				<Rotation ux:Name="cog2Rotation" />
+			</BigCog>
+			<BigCog ux:Name="cog3" Offset="-60,60">
+				<Translation ux:Name="cog3Trans" Y="100" />
+				<Rotation Degrees="10" />
+				<Rotation ux:Name="cog3Rotation" />
+			</BigCog>
+			<BigCog ux:Name="cog4" Offset="130,30">
+				<Translation ux:Name="cog4Trans" Y="100" />
+				<Rotation Degrees="5" />
+				<Rotation ux:Name="cog4Rotation" />
+			</BigCog>
+			<BigCog ux:Name="cog5" Offset="-100, -47">
+				<Translation ux:Name="cog5Trans" Y="-100" />
+				<Rotation Degrees="8" />
+				<Rotation ux:Name="cog5Rotation" />
+			</BigCog>
+		</Panel>
+
+		<!-- set the hight of cogPanel so it stays open while loading -->
+		<WhileTrue ux:Name="retainSpace">
+			<Change cogPanel.MinHeight="75" Duration="0" DurationBack="0.3" Easing="CircularIn" />
+		</WhileTrue>
+
+		<!-- Rotate the wheels as we pull down -->
+		<ScrollingAnimation Range="SnapMin">
+			<Change cogPanel.Height="150" Duration="1" />
+			<Change cog1Rotation.Degrees="200" Duration="1" />
+			<Change cog2Rotation.Degrees="-93" Duration="1" />
+			<Change cog3Rotation.Degrees="-93" Duration="1" />
+			<Change cog4Rotation.Degrees="93" Duration="1" />
+			<Change cog5Rotation.Degrees="93" Duration="1" />
+		</ScrollingAnimation>
+
+		<!-- Move the big wheels when pulled past threshold -->
+		<Timeline ux:Name="moveCogsIntoPlace">
+			<Change cog2Trans.Y="0" Duration="0.6" DurationBack="0.2" Easing="CircularOut" />
+			<Change cog3Trans.Y="0" Duration="0.6" DurationBack="0.2" Easing="CircularOut" />
+			<Change cog4Trans.Y="0" Duration="0.6" DurationBack="0.2" Easing="CircularOut" />
+			<Change cog5Trans.Y="0" Duration="0.6" DurationBack="0.2" Easing="CircularOut" />
+		</Timeline>
+
+
+		<PullToReload IsLoading="{isLoading}" ReloadHandler="{reloadHandler}">
+			<State ux:Binding="Pulling">
+				<!-- animate elements while pulling here -->
+			</State>
+			<State ux:Binding="PulledPastThreshold">
+				<PlayTo Progress="1" Target="moveCogsIntoPlace" />
+			</State>
+			<State ux:Binding="Loading">
+				<Change retainSpace.Value="true" DurationBack="0.5" />
+				<Spin Target="cog1" Frequency="0.53125" />
+				<Spin Target="cog2" Frequency="-0.25" />
+				<Spin Target="cog3" Frequency="-0.25" />
+				<Spin Target="cog4" Frequency="0.25" />
+				<Spin Target="cog5" Frequency="0.25" />
+				<PlayTo Target="moveCogsIntoPlace" Direction="Backward" Progress="0" />
+			</State>
+		</PullToReload>
+	</Panel>
+
+	<JavaScript>
+		var Observable = require("FuseJS/Observable");
+
+		function endLoading(){
+			isLoading.value = false;
+		}
+
+		function reloadHandler(){
+			isLoading.value = true;
+			setTimeout(endLoading, 3000);
+		}
+
+		var isLoading = Observable(false);
+
+		module.exports = {
+			isLoading: isLoading,
+			reloadHandler: reloadHandler
+		};
+	</JavaScript>
+
+	<!--page view-->
+	<Panel>
+		<ScrollView SnapMinTransform="false">
+			<DockPanel>
+				<CogWheelReload Dock="Top" />
+				<StackPanel>
+					<Each Items="{courses}">
+						<Course ux:Name="item" Time="{time}" CourseName="{name}" CircleColor="{color}" EnterTime="{enter}" ExitTime="{exit}">
+					</Course>
+					</Each>
+				</StackPanel>
+			</DockPanel>
+		</ScrollView>
+	</Panel>	
 </Panel>

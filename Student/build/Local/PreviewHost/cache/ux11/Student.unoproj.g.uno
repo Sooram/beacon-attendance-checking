@@ -1,3 +1,75 @@
+sealed class Student_FuseControlsText_Value_Property: Uno.UX.Property<string>
+{
+    [Uno.WeakReference] readonly Fuse.Controls.Text _obj;
+    public Student_FuseControlsText_Value_Property(Fuse.Controls.Text obj, global::Uno.UX.Selector name) : base(name) { _obj = obj; }
+    public override global::Uno.UX.PropertyObject Object { get { return _obj; } }
+    public override string Get() { return _obj.Value; }
+    public override void Set(string v, global::Uno.UX.IPropertyListener origin) { _obj.SetValue(v, origin); }
+    public override bool SupportsOriginSetter { get { return true; } }
+}
+sealed class Student_FuseControlsCircle_Color_Property: Uno.UX.Property<float4>
+{
+    [Uno.WeakReference] readonly Fuse.Controls.Circle _obj;
+    public Student_FuseControlsCircle_Color_Property(Fuse.Controls.Circle obj, global::Uno.UX.Selector name) : base(name) { _obj = obj; }
+    public override global::Uno.UX.PropertyObject Object { get { return _obj; } }
+    public override float4 Get() { return _obj.Color; }
+    public override void Set(float4 v, global::Uno.UX.IPropertyListener origin) { _obj.SetColor(v, origin); }
+    public override bool SupportsOriginSetter { get { return true; } }
+}
+sealed class Student_FuseReactiveEach_Items_Property: Uno.UX.Property<object>
+{
+    [Uno.WeakReference] readonly Fuse.Reactive.Each _obj;
+    public Student_FuseReactiveEach_Items_Property(Fuse.Reactive.Each obj, global::Uno.UX.Selector name) : base(name) { _obj = obj; }
+    public override global::Uno.UX.PropertyObject Object { get { return _obj; } }
+    public override object Get() { return _obj.Items; }
+    public override void Set(object v, global::Uno.UX.IPropertyListener origin) { _obj.Items = v; }
+    public override bool SupportsOriginSetter { get { return false; } }
+}
+sealed class Student_Course_Time_Property: Uno.UX.Property<string>
+{
+    [Uno.WeakReference] readonly Course _obj;
+    public Student_Course_Time_Property(Course obj, global::Uno.UX.Selector name) : base(name) { _obj = obj; }
+    public override global::Uno.UX.PropertyObject Object { get { return _obj; } }
+    public override string Get() { return _obj.Time; }
+    public override void Set(string v, global::Uno.UX.IPropertyListener origin) { _obj.SetTime(v, origin); }
+    public override bool SupportsOriginSetter { get { return true; } }
+}
+sealed class Student_Course_CourseName_Property: Uno.UX.Property<string>
+{
+    [Uno.WeakReference] readonly Course _obj;
+    public Student_Course_CourseName_Property(Course obj, global::Uno.UX.Selector name) : base(name) { _obj = obj; }
+    public override global::Uno.UX.PropertyObject Object { get { return _obj; } }
+    public override string Get() { return _obj.CourseName; }
+    public override void Set(string v, global::Uno.UX.IPropertyListener origin) { _obj.SetCourseName(v, origin); }
+    public override bool SupportsOriginSetter { get { return true; } }
+}
+sealed class Student_Course_CircleColor_Property: Uno.UX.Property<float4>
+{
+    [Uno.WeakReference] readonly Course _obj;
+    public Student_Course_CircleColor_Property(Course obj, global::Uno.UX.Selector name) : base(name) { _obj = obj; }
+    public override global::Uno.UX.PropertyObject Object { get { return _obj; } }
+    public override float4 Get() { return _obj.CircleColor; }
+    public override void Set(float4 v, global::Uno.UX.IPropertyListener origin) { _obj.SetCircleColor(v, origin); }
+    public override bool SupportsOriginSetter { get { return true; } }
+}
+sealed class Student_Course_EnterTime_Property: Uno.UX.Property<string>
+{
+    [Uno.WeakReference] readonly Course _obj;
+    public Student_Course_EnterTime_Property(Course obj, global::Uno.UX.Selector name) : base(name) { _obj = obj; }
+    public override global::Uno.UX.PropertyObject Object { get { return _obj; } }
+    public override string Get() { return _obj.EnterTime; }
+    public override void Set(string v, global::Uno.UX.IPropertyListener origin) { _obj.SetEnterTime(v, origin); }
+    public override bool SupportsOriginSetter { get { return true; } }
+}
+sealed class Student_Course_ExitTime_Property: Uno.UX.Property<string>
+{
+    [Uno.WeakReference] readonly Course _obj;
+    public Student_Course_ExitTime_Property(Course obj, global::Uno.UX.Selector name) : base(name) { _obj = obj; }
+    public override global::Uno.UX.PropertyObject Object { get { return _obj; } }
+    public override string Get() { return _obj.ExitTime; }
+    public override void Set(string v, global::Uno.UX.IPropertyListener origin) { _obj.SetExitTime(v, origin); }
+    public override bool SupportsOriginSetter { get { return true; } }
+}
 sealed class Student_FuseControlsPageControl_Active_Property: Uno.UX.Property<Fuse.Visual>
 {
     [Uno.WeakReference] readonly Fuse.Controls.PageControl _obj;
@@ -78,4 +150,13 @@ sealed class Student_TabIcon_Color_Property: Uno.UX.Property<float4>
     public override float4 Get() { return _obj.Color; }
     public override void Set(float4 v, global::Uno.UX.IPropertyListener origin) { _obj.Color = v; }
     public override bool SupportsOriginSetter { get { return false; } }
+}
+sealed class Student_HidingPanel_Opacity_Property: Uno.UX.Property<float>
+{
+    [Uno.WeakReference] readonly HidingPanel _obj;
+    public Student_HidingPanel_Opacity_Property(HidingPanel obj, global::Uno.UX.Selector name) : base(name) { _obj = obj; }
+    public override global::Uno.UX.PropertyObject Object { get { return _obj; } }
+    public override float Get() { return _obj.Opacity; }
+    public override void Set(float v, global::Uno.UX.IPropertyListener origin) { _obj.SetOpacity(v, origin); }
+    public override bool SupportsOriginSetter { get { return true; } }
 }

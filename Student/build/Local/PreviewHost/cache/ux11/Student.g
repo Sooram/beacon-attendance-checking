@@ -3,4 +3,7 @@ build/Local/PreviewHost/cache/ux11/TabHeader.g.uno
 build/Local/PreviewHost/cache/ux11/TabIcon.g.uno
 build/Local/PreviewHost/cache/ux11/PagePlaceholder.g.uno
 build/Local/PreviewHost/cache/ux11/ColorPalette.g.uno
+build/Local/PreviewHost/cache/ux11/CoursePage.g.uno
+build/Local/PreviewHost/cache/ux11/Course.g.uno
+build/Local/PreviewHost/cache/ux11/HidingPanel.g.uno
 build/Local/PreviewHost/cache/ux11/Student.unoproj.g.uno
