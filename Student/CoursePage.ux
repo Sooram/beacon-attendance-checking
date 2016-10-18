@@ -1,0 +1,53 @@
+<Panel ux:Name="CoursePage">
+	<DockPanel ux:Class="CourseView" Padding="10" Color="#eee" Height="100" Margin="10">
+		<string ux:Property="Course" />
+		<string ux:Property="Time" />
+		<float4 ux:Property="CircleColor" />
+
+		<Circle Color="{Property CircleColor}" Dock="Right" Width="30" Height="30" />
+
+		<Text Alignment="VerticalCenter" FontSize="30" Dock="Left" Color="Black" Value="{Property Time}" />
+
+		<Text Alignment="Center" FontSize="30" Color="Black" Value="{Property Course}" />
+	</DockPanel>
+	
+	<JavaScript>
+		var Observable = require("FuseJS/Observable");
+
+		var classes = Observable();
+
+		function simulateLoad() {
+			setTimeout(function() {
+				classes.replaceAll([
+			{
+				course: "Fuse 101",
+				time: "13:45",
+				circleColor: "#f00"
+			},
+			{
+				course: "Fuse 201",
+				time: "14:45",
+				circleColor: "#0f0"
+			},
+			{
+				course: "Fuse 301",
+				time: "15:45",
+				circleColor: "#ff0"
+			}
+			]);
+			}, 500);
+		}
+
+		module.exports = {
+			classes: classes
+		};
+	</JavaScript>
+
+	<StackPanel>
+		<Circle />
+		<Each Items="{classes}" >
+			<CourseView Course="{course}" Time="{time}" CircleColor="{cicleColor}" />
+		</Each>
+	</StackPanel>
+	<Text Value="Hi"/>
+</Panel>
