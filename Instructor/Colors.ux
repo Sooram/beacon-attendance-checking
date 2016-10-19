@@ -1,0 +1,18 @@
+<Panel ux:Class="ColorPalette">
+	<float4 ux:Global="color0" ux:Value="#75AE30" />
+	<float4 ux:Global="color1" ux:Value="#37A1D7" />
+	<float4 ux:Global="color2" ux:Value="#FF9803" />
+	<float4 ux:Global="color3" ux:Value="#F58F87" />
+	<float4 ux:Global="color4" ux:Value="#858887" />
+	<float4 ux:Global="Green"      ux:Value="#14FFB5"/>
+	<float4 ux:Global="Purple"     ux:Value="#5E2E91"/>
+	<float4 ux:Global="TopGray"    ux:Value="#9F83BD"/>
+	<float4 ux:Global="BottomGray" ux:Value="#7E58A7"/>
+	<float4 ux:Global="GrayBlue"   ux:Value="#536e83"/>
+	<float4 ux:Global="SkyBlue"	   ux:Value="#a0ddcf"/>
+	<float4 ux:Global="Pink"	   ux:Value="#fb8472"/>
+	<float4 ux:Global="DarkGray"   ux:Value="#5a5a5a"/>
+	<float4 ux:Global="Red1"	   ux:Value="#ec0707"/>
+	<float4 ux:Global="Green1"	   ux:Value="#1e852f"/>
+	<float4 ux:Global="Yellow1"	   ux:Value="#ffe770"/>
+</Panel>

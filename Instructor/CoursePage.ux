@@ -1,0 +1,63 @@
+<Panel ux:Class="CoursePage">
+	<JavaScript File="CoursePage.js" />
+	<Router ux:Dependency="router"/>
+	
+	<Panel ux:Class="Course">
+		<Rectangle Color="White" CornerRadius="6" Height="130" Margin="10"> 
+			<string ux:Property="Time" />
+			<string ux:Property="CourseName" />
+			<string ux:Property="Total" />
+			<string ux:Property="Absence" />
+			<DropShadow />
+
+			<Clicked>
+					<Scale Factor="0.8" Duration=".15" Easing="CubicInOut" />
+			</Clicked>
+			
+			<StackPanel ux:Name="courseList" Opacity="1">
+	 			<DockPanel Padding="10, 10, 10, 0" Margin="10">
+					<Text Value="{Property Time}" Alignment="VerticalCenter" FontSize="30" Dock="Left" Color="Black">
+						<Font File="Assets/Fonts/Roboto-Regular.ttf"/>
+					</Text>
+					
+					<Text Value="{Property CourseName}" Alignment="Center" FontSize="22" Color="Black" >
+						 <Font File="Assets/Fonts/Roboto-Regular.ttf"/>
+					</Text>				
+				</DockPanel> 
+
+				<Grid Rows="20,20,1*" ColumnCount="4" Height="30%" Padding="20,0,40,0">
+						<Image File="Assets/person.png" Width="20" Height="20" Color="#a58a9a" ColumnSpan="2" Alignment="Right"/>
+						<Text Value="Total :" FontSize="20" Color="Black" Margin="10,0" >
+							<Font File="Assets/Fonts/Roboto-Regular.ttf"/>
+						</Text>					
+						<Text Value="{Property Total}" FontSize="20" Color="Black" Margin="45,0">
+							<Font File="Assets/Fonts/Roboto-Regular.ttf"/>
+						</Text>
+					
+						<Image File="Assets/absent.png" Width="20" Height="20" ColumnSpan="2" Alignment="Right"/>
+						<Text Value="Absence :" FontSize="20" Color="Black" Margin="10,0">
+							 <Font File="Assets/Fonts/Dosis-Medium.otf"/>
+						</Text>						
+						<Text Value="{Property Absence}" FontSize="20" Color="Black" Margin="45,0">
+							 <Font File="Assets/Fonts/Dosis-Medium.otf"/>
+						</Text>					
+				</Grid>
+			</StackPanel>	
+		</Rectangle>
+	</Panel>
+
+	<!--page view-->
+	<Panel>
+		<ScrollView SnapMinTransform="false">
+			<DockPanel>
+				<CogWheelReload Dock="Top" />
+				<StackPanel>
+					<Each Items="{courses}">
+						<Course ux:Name="item" Time="{time}" CourseName="{name}" Total="{total}" Absence="{absence}" Clicked="{goToList}"/>	
+					</Each>
+				</StackPanel>
+			</DockPanel>
+		</ScrollView>
+
+	</Panel>	
+</Panel>
