@@ -70,6 +70,15 @@ sealed class Student_Course_ExitTime_Property: Uno.UX.Property<string>
     public override void Set(string v, global::Uno.UX.IPropertyListener origin) { _obj.SetExitTime(v, origin); }
     public override bool SupportsOriginSetter { get { return true; } }
 }
+sealed class Student_FuseTriggersPullToReload_IsLoading_Property: Uno.UX.Property<bool>
+{
+    [Uno.WeakReference] readonly Fuse.Triggers.PullToReload _obj;
+    public Student_FuseTriggersPullToReload_IsLoading_Property(Fuse.Triggers.PullToReload obj, global::Uno.UX.Selector name) : base(name) { _obj = obj; }
+    public override global::Uno.UX.PropertyObject Object { get { return _obj; } }
+    public override bool Get() { return _obj.IsLoading; }
+    public override void Set(bool v, global::Uno.UX.IPropertyListener origin) { _obj.IsLoading = v; }
+    public override bool SupportsOriginSetter { get { return false; } }
+}
 sealed class Student_FuseControlsPageControl_Active_Property: Uno.UX.Property<Fuse.Visual>
 {
     [Uno.WeakReference] readonly Fuse.Controls.PageControl _obj;
@@ -151,12 +160,48 @@ sealed class Student_TabIcon_Color_Property: Uno.UX.Property<float4>
     public override void Set(float4 v, global::Uno.UX.IPropertyListener origin) { _obj.Color = v; }
     public override bool SupportsOriginSetter { get { return false; } }
 }
-sealed class Student_HidingPanel_Opacity_Property: Uno.UX.Property<float>
+sealed class Student_FuseControlsPanel_Opacity_Property: Uno.UX.Property<float>
 {
-    [Uno.WeakReference] readonly HidingPanel _obj;
-    public Student_HidingPanel_Opacity_Property(HidingPanel obj, global::Uno.UX.Selector name) : base(name) { _obj = obj; }
+    [Uno.WeakReference] readonly Fuse.Controls.Panel _obj;
+    public Student_FuseControlsPanel_Opacity_Property(Fuse.Controls.Panel obj, global::Uno.UX.Selector name) : base(name) { _obj = obj; }
     public override global::Uno.UX.PropertyObject Object { get { return _obj; } }
     public override float Get() { return _obj.Opacity; }
     public override void Set(float v, global::Uno.UX.IPropertyListener origin) { _obj.SetOpacity(v, origin); }
     public override bool SupportsOriginSetter { get { return true; } }
+}
+sealed class Student_FuseControlsPanel_MinHeight_Property: Uno.UX.Property<Uno.UX.Size>
+{
+    [Uno.WeakReference] readonly Fuse.Controls.Panel _obj;
+    public Student_FuseControlsPanel_MinHeight_Property(Fuse.Controls.Panel obj, global::Uno.UX.Selector name) : base(name) { _obj = obj; }
+    public override global::Uno.UX.PropertyObject Object { get { return _obj; } }
+    public override Uno.UX.Size Get() { return _obj.MinHeight; }
+    public override void Set(Uno.UX.Size v, global::Uno.UX.IPropertyListener origin) { _obj.MinHeight = v; }
+    public override bool SupportsOriginSetter { get { return false; } }
+}
+sealed class Student_FuseControlsPanel_Height_Property: Uno.UX.Property<Uno.UX.Size>
+{
+    [Uno.WeakReference] readonly Fuse.Controls.Panel _obj;
+    public Student_FuseControlsPanel_Height_Property(Fuse.Controls.Panel obj, global::Uno.UX.Selector name) : base(name) { _obj = obj; }
+    public override global::Uno.UX.PropertyObject Object { get { return _obj; } }
+    public override Uno.UX.Size Get() { return _obj.Height; }
+    public override void Set(Uno.UX.Size v, global::Uno.UX.IPropertyListener origin) { _obj.Height = v; }
+    public override bool SupportsOriginSetter { get { return false; } }
+}
+sealed class Student_FuseRotation_Degrees_Property: Uno.UX.Property<float>
+{
+    [Uno.WeakReference] readonly Fuse.Rotation _obj;
+    public Student_FuseRotation_Degrees_Property(Fuse.Rotation obj, global::Uno.UX.Selector name) : base(name) { _obj = obj; }
+    public override global::Uno.UX.PropertyObject Object { get { return _obj; } }
+    public override float Get() { return _obj.Degrees; }
+    public override void Set(float v, global::Uno.UX.IPropertyListener origin) { _obj.Degrees = v; }
+    public override bool SupportsOriginSetter { get { return false; } }
+}
+sealed class Student_FuseTranslation_Y_Property: Uno.UX.Property<float>
+{
+    [Uno.WeakReference] readonly Fuse.Translation _obj;
+    public Student_FuseTranslation_Y_Property(Fuse.Translation obj, global::Uno.UX.Selector name) : base(name) { _obj = obj; }
+    public override global::Uno.UX.PropertyObject Object { get { return _obj; } }
+    public override float Get() { return _obj.Y; }
+    public override void Set(float v, global::Uno.UX.IPropertyListener origin) { _obj.Y = v; }
+    public override bool SupportsOriginSetter { get { return false; } }
 }

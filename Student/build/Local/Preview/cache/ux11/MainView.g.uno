@@ -157,7 +157,7 @@ public partial class MainView: Fuse.App
         temp18.Factor = 0.8f;
         temp18.Easing = Fuse.Animations.Easing.CubicInOut;
         temp18.Duration = 0.15;
-        titleText.Value = "Here, I am";
+        titleText.Value = "Here!";
         titleText.FontSize = 25f;
         titleText.TextColor = Fuse.Drawing.Colors.White;
         titleText.Alignment = Fuse.Elements.Alignment.Center;

@@ -5,5 +5,8 @@ build/Local/Preview/cache/ux11/PagePlaceholder.g.uno
 build/Local/Preview/cache/ux11/ColorPalette.g.uno
 build/Local/Preview/cache/ux11/CoursePage.g.uno
 build/Local/Preview/cache/ux11/Course.g.uno
-build/Local/Preview/cache/ux11/HidingPanel.g.uno
+build/Local/Preview/cache/ux11/CogWheelReload.g.uno
+build/Local/Preview/cache/ux11/Cog.g.uno
+build/Local/Preview/cache/ux11/SmallCog.g.uno
+build/Local/Preview/cache/ux11/BigCog.g.uno
 build/Local/Preview/cache/ux11/Student.unoproj.g.uno

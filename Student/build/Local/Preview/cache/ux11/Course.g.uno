@@ -87,7 +87,7 @@ public partial class Course: Fuse.Controls.Panel
     global::Uno.UX.Property<string> temp4_Value_inst;
     global::Uno.UX.Property<string> this_ExitTime_inst;
     global::Uno.UX.Property<float> bottomPanel_Opacity_inst;
-    internal HidingPanel bottomPanel;
+    internal Fuse.Controls.Panel bottomPanel;
     internal Fuse.Controls.Text enter;
     internal Fuse.Triggers.WhileTrue bottomShowUp;
     static Course()
@@ -115,8 +115,8 @@ public partial class Course: Fuse.Controls.Panel
         var temp4 = new Fuse.Controls.Text();
         temp4_Value_inst = new Student_FuseControlsText_Value_Property(temp4, __selector0);
         this_ExitTime_inst = new Student_Course_ExitTime_Property(this, __selector6);
-        bottomPanel = new HidingPanel();
-        bottomPanel_Opacity_inst = new Student_HidingPanel_Opacity_Property(bottomPanel, __selector7);
+        bottomPanel = new Fuse.Controls.Panel();
+        bottomPanel_Opacity_inst = new Student_FuseControlsPanel_Opacity_Property(bottomPanel, __selector7);
         var temp5 = new Fuse.Controls.Rectangle();
         var temp6 = new Fuse.Gestures.Clicked();
         var temp7 = new Fuse.Triggers.Actions.Toggle();
