@@ -47,8 +47,6 @@
 		<ScrollView>
 				<StackPanel>
 					<Image ux:Name="back" File="Assets/imageedit_1_9094223435.png" Color="#a58a9a" Height="30" Width="50" Margin="10" Clicked="{goBack}" Alignment="Left">
-					<!-- <Rectangle ux:Name="back" Color="#a58a9a" CornerRadius="6" Height="30" Width="50" Margin="20,10" Dock="Bottom" Clicked="{goBack}" Alignment="Left">
-						<Text Value="Back" Color="White" FontSize="15" Alignment="Center"/> -->
 						<Clicked>
 							<Scale Factor="0.8" Duration=".1" Easing="CubicInOut" />
 						</Clicked>	

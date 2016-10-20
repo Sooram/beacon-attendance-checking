@@ -1,32 +1,29 @@
-var students = [
-	
-		
-			{
-				id: "2012-00000",
-				name: "Sooram Kang",
-				color: "#1e852f"			
-			},
-			{
-				id: "2012-00000",
-				name: "Sooram Kang",
-				color: "#1e852f"			
-			},
-			{
-				id: "2012-00000",
-				name: "Sooram Kang",
-				color: "#ec0707"			
-			},	
-			{
-				id: "2012-00000",
-				name: "Sooram Kang",
-				color: "#1e852f"			
-			},
-			{
-				id: "2012-00000",
-				name: "Sooram Kang",
-				color: "#1e852f"			
-			}				
-	
+var students = [		
+	{
+		id: "2012-00000",
+		name: "Sooram Kang",
+		color: "#1e852f"			
+	},
+	{
+		id: "2012-00000",
+		name: "Sooram Kang",
+		color: "#1e852f"			
+	},
+	{
+		id: "2012-00000",
+		name: "Sooram Kang",
+		color: "#ec0707"			
+	},	
+	{
+		id: "2012-00000",
+		name: "Sooram Kang",
+		color: "#1e852f"			
+	},
+	{
+		id: "2012-00000",
+		name: "Sooram Kang",
+		color: "#1e852f"			
+	}				
 ];
 
 

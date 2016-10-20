@@ -26,21 +26,21 @@
 				</DockPanel> 
 
 				<Grid Rows="20,20,1*" ColumnCount="4" Height="30%" Padding="20,0,40,0">
-						<Image File="Assets/person.png" Width="20" Height="20" Color="#a58a9a" ColumnSpan="2" Alignment="Right"/>
-						<Text Value="Total :" FontSize="20" Color="Black" Margin="10,0" >
-							<Font File="Assets/Fonts/Roboto-Regular.ttf"/>
-						</Text>					
-						<Text Value="{Property Total}" FontSize="20" Color="Black" Margin="45,0">
-							<Font File="Assets/Fonts/Roboto-Regular.ttf"/>
-						</Text>
-					
-						<Image File="Assets/absent.png" Width="20" Height="20" ColumnSpan="2" Alignment="Right"/>
-						<Text Value="Absence :" FontSize="20" Color="Black" Margin="10,0">
-							 <Font File="Assets/Fonts/Dosis-Medium.otf"/>
-						</Text>						
-						<Text Value="{Property Absence}" FontSize="20" Color="Black" Margin="45,0">
-							 <Font File="Assets/Fonts/Dosis-Medium.otf"/>
-						</Text>					
+					<Image File="Assets/person.png" Width="20" Height="20" Color="#a58a9a" ColumnSpan="2" Alignment="Right"/>
+					<Text Value="Total :" FontSize="20" Color="Black" Margin="10,0" >
+						<Font File="Assets/Fonts/Roboto-Regular.ttf"/>
+					</Text>					
+					<Text Value="{Property Total}" FontSize="20" Color="Black" Margin="45,0">
+						<Font File="Assets/Fonts/Roboto-Regular.ttf"/>
+					</Text>
+				
+					<Image File="Assets/absent.png" Width="20" Height="20" ColumnSpan="2" Alignment="Right"/>
+					<Text Value="Absence :" FontSize="20" Color="Black" Margin="10,0">
+						 <Font File="Assets/Fonts/Dosis-Medium.otf"/>
+					</Text>						
+					<Text Value="{Property Absence}" FontSize="20" Color="Black" Margin="45,0">
+						 <Font File="Assets/Fonts/Dosis-Medium.otf"/>
+					</Text>					
 				</Grid>
 			</StackPanel>	
 		</Rectangle>
