@@ -12,7 +12,7 @@ public partial class HidingPanel: Fuse.Controls.Panel
     }
     void InitializeUX()
     {
-        this_Opacity_inst = new signUp_HidingPanel_Opacity_Property(this, __selector0);
+        this_Opacity_inst = new SignUp_HidingPanel_Opacity_Property(this, __selector0);
         var temp = new Fuse.Triggers.WhileEnabled();
         var temp1 = new Fuse.Animations.Change<float>(this_Opacity_inst);
         this.HitTestMode = Fuse.Elements.HitTestMode.LocalBoundsAndChildren;
