@@ -5,7 +5,7 @@
     "FuseJS"
   ],
   "Includes": [
-    "MainView.ux:UXFile",
-    "Resources.ux:UXFile",
+    "*",
+    "*.js:Bundle"
   ]
 }

@@ -22,11 +22,13 @@
 			<StackPanel Alignment="Center">
 				<Image ux:Name="logo" File="Icons/imageedit_1_5851198658.png" Width="50%"/>
 				<StackPanel ux:Name="logoMockText">
-					<Text Value="Auto" FontSize="50" TextColor="SkyBlue" Alignment="Center" Margin="20">
-						<Font File="The Drunked Man St.ttf"/>
+					<Text Value="Here!" FontSize="50" TextColor="SkyBlue" Alignment="Center" Margin="10">
+						<Font File="Icons/Fonts/Roboto-Regular.ttf"/>
+						<DropShadow/>
 					</Text>
-					<Text Value="Attendance Check" FontSize="30" TextColor="SkyBlue" Alignment="Center">
-						<Font File="The Drunked Man St.ttf"/>
+					<Text Value="-- Auto Attendance Checking system --" FontSize="20" TextColor="SkyBlue" Alignment="Center" Margin="10">
+						<Font File="Icons/Fonts/Dosis-Medium.otf"/>
+						<DropShadow/>
 					</Text>
 				</StackPanel>
 			</StackPanel>
@@ -62,7 +64,7 @@
 				<Panel ux:Name="submitButton" Offset="0%,50%" Width="150" Height="60">
 					<Text ux:Name="text" Alignment="Center" Value="Done" FontSize="18" TextColor="#fff"/>
 					<Panel ux:Name="loadingCirclePanel">
-						<Circle ux:Name="loadingCircle" Width="70%" Height="70%" Opacity="0" 	StartAngleDegrees="0" LengthAngleDegrees="90">
+						<Circle ux:Name="loadingCircle" Width="70%" Height="70%" Opacity="0" StartAngleDegrees="0" LengthAngleDegrees="90">
 							<Stroke Width="1" Brush="#fff" />
 						</Circle>
 					</Panel>
