@@ -83,7 +83,7 @@
 				</ActivatingAnimation>
 			</Page>
 			<Page ux:Name="page2">
-				
+				<HistoryPage />
 				<WhileActive Threshold="0.5">
 					<Set shrinkIndicatorWidth.Value="false" />
 					<Set indicatorColorAttractor.Value="Pink" />

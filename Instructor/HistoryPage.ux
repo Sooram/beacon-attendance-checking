@@ -1,0 +1,35 @@
+<DockPanel ux:Class="HistoryPage">
+		<JavaScript File="HistoryPage.js" />
+
+		<Font File="Assets/Fonts/RobotoCondensed-Bold.ttf" ux:Global="Bold" />
+		<Font File="Assets/Fonts/RobotoCondensed-Regular.ttf" ux:Global="Regular" />
+		<Font File="Assets/Fonts/RobotoCondensed-Light.ttf" ux:Global="Light" />
+
+		<FileImageSource ux:Key="contact1" File="Assets/Contacts/Contact1.png" />
+		<FileImageSource ux:Key="contact2" File="Assets/Contacts/Contact2.png" />
+ 		<FileImageSource ux:Key="contact3" File="Assets/Contacts/Contact3.png" />
+		<FileImageSource ux:Key="contact4" File="Assets/Contacts/Contact4.png" />
+
+
+		<BottomBarBackground Dock="Bottom" />
+		<ScrollView>
+			<StackPanel>
+				<Each Items="{content}">								
+					<DockPanel Margin="7,1,7,0" >
+						<Circle Height="50" Width="50" Dock="Left" Margin="7,7,0,7" Alignment="TopLeft">
+							<ImageFill Source="{DataToResource icon}" />
+						</Circle>
+
+						<StackPanel Margin="7,3,7,7">
+							<Text Font="Regular" Value="{student_name}" FontSize="16" />
+							<Text Font="Regular" Value="{student_id}" FontSize="16" Color="#999" />
+							<StackPanel Orientation="Horizontal" >
+								<Text TextWrapping="Wrap" Font="Light" Value="{absence}" FontSize="14" Color="#000" />
+								<Text TextWrapping="Wrap" Font="Light" Value="{late}" FontSize="14" Color="#000" Margin="20,0"/>
+							</StackPanel>
+						</StackPanel>
+					</DockPanel>
+				</Each>
+			</StackPanel>
+		</ScrollView>
+	</DockPanel>
