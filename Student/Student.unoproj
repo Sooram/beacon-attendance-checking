@@ -5,10 +5,7 @@
     "FuseJS"
   ],
   "Includes": [
-    "MainView.ux:UXFile",
-    "Colors.ux:UXFile",
-    "CoursePage.ux:UXFile",
-    "CogWheelReload.ux:UXFile",
-    "CoursePage.js:Bundle"
+    "*",
+    "*.js:Bundle"
   ]
 }
