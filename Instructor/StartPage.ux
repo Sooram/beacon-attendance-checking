@@ -1,0 +1,9 @@
+<App>
+
+	<Router ux:Name="router"/>
+	<Navigator DefaultTemplate="home">
+		<CoursePage ux:Template="home" router="router"/>
+		<MainView ux:Template="mainView" router="router" />
+	</Navigator>
+
+</App>

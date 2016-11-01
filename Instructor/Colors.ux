@@ -15,4 +15,6 @@
 	<float4 ux:Global="Red1"	   ux:Value="#ec0707"/>
 	<float4 ux:Global="Green1"	   ux:Value="#1e852f"/>
 	<float4 ux:Global="Yellow1"	   ux:Value="#ffe770"/>
+	<float4 ux:Global="GrayPurple"	 ux:Value="#a58a9a"/>
+	<float4 ux:Global="PastelPurple" ux:Value="#e9e2ff"/>	
 </Panel>

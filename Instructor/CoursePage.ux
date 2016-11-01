@@ -1,4 +1,4 @@
-<Panel ux:Class="CoursePage">
+<Page ux:Class="CoursePage">
 	<JavaScript File="CoursePage.js" />
 	<Router ux:Dependency="router"/>
 	
@@ -14,7 +14,7 @@
 					<Scale Factor="0.8" Duration=".15" Easing="CubicInOut" />
 			</Clicked>
 			
-			<StackPanel ux:Name="courseList" Opacity="1">
+			<StackPanel ux:Name="courseList" >
 	 			<DockPanel Padding="10, 10, 10, 0" Margin="10">
 					<Text Value="{Property Time}" Alignment="VerticalCenter" FontSize="30" Dock="Left" Color="Black">
 						<Font File="Assets/Fonts/Roboto-Regular.ttf"/>
@@ -47,17 +47,42 @@
 	</Panel>
 
 	<!--page view-->
-	<Panel>
-		<ScrollView SnapMinTransform="false">
-			<DockPanel>
-				<CogWheelReload Dock="Top" />
-				<StackPanel>
+	<ClientPanel>
+		<Rectangle ux:Name="bgColor" Layer="Background" Height="100%" Color="PastelPurple" />
+
+		<!--top title space	-->
+		<Grid ux:Name="Top" Color="GrayBlue" Columns="auto,1*,auto" Height="60" Dock="Top">
+			<Grid ColumnCount="2" RowCount="2" Width="22" Height="22" Margin="10">
+				<Image File="Assets/menu.png" Width="30" Height="30" Margin="10"/>
+				<Clicked>
+					<Scale Factor="0.8" Duration=".15" Easing="CubicInOut" />
+				</Clicked>
+			</Grid>
+			<Text ux:Name="titleText" Value="Here!" TextColor="White" FontSize="25" Alignment="Center"/>
+			<Image File="Assets/search.png" Width="30" Height="30" Margin="10"/>
+		</Grid>			
+					
+		<!--course list-->	
+		<ScrollView>
+			<StackPanel>
+				<CogWheelReload />
+
+				<StackPanel Padding="0,15">
 					<Each Items="{courses}">
-						<Course ux:Name="item" Time="{time}" CourseName="{name}" Total="{total}" Absence="{absence}" Clicked="{goToList}"/>	
+						<Course ux:Name="item" Time="{time}" CourseName="{name}" Total="{total}" Absence="{absence}" Clicked="{goToMain}" />	
 					</Each>
 				</StackPanel>
-			</DockPanel>
-		</ScrollView>
 
-	</Panel>	
-</Panel>
+			</StackPanel>
+		</ScrollView>	
+
+		<!--page animation-->
+		<Attractor ux:Name="bgColorAttractor" Target="bgColor.Color" Value="PastelPurple" />
+		<Attractor ux:Name="titleTextAttractor" Target="titleText.TextColor" Value="GrayPurple" />
+		<WhileActive Threshold="0.5">
+			<Set bgColorAttractor.Value="PastelPurple" />
+			<Set titleTextAttractor.Value="GrayPurple" />
+		</WhileActive>		
+	</ClientPanel>
+
+</Page>

@@ -25,12 +25,12 @@ function loadCourses() {
 
 loadCourses();
 
+var students = require("students");
 
-function goToList(arg) {
-	var student = arg.data;
-	router.push("studentList", student);
+function goToMain(arg) {
+   	var student = arg.data;
+ 	router.push("mainView", student);
 }
-
 
 function endLoading(){
 	isLoading.value = false;
@@ -45,7 +45,8 @@ var isLoading = Observable(false);
 
 module.exports = {
 	courses : courses,
-	goToList : goToList,
 	isLoading: isLoading,
+	students: students,
+	goToMain: goToMain,	
 	reloadHandler: reloadHandler
 };
