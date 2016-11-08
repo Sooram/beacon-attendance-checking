@@ -1,50 +1,7 @@
 [Uno.Compiler.UxGenerated]
-public partial class MainView: Fuse.App
+public partial class MainView: Fuse.Controls.ClientPanel
 {
-    [Uno.Compiler.UxGenerated]
-    public partial class Template: Uno.UX.Template
-    {
-        [Uno.WeakReference] internal readonly MainView __parent;
-        [Uno.WeakReference] internal readonly MainView __parentInstance;
-        public Template(MainView parent, MainView parentInstance): base("home", false)
-        {
-            __parent = parent;
-            __parentInstance = parentInstance;
-        }
-        static Template()
-        {
-        }
-        public override object New()
-        {
-            var self = new CoursePage(__parent.router);
-            self.Padding = float4(0f, 5f, 0f, 5f);
-            self.Name = __selector0;
-            return self;
-        }
-        static global::Uno.UX.Selector __selector0 = "home";
-    }
-    [Uno.Compiler.UxGenerated]
-    public partial class Template1: Uno.UX.Template
-    {
-        [Uno.WeakReference] internal readonly MainView __parent;
-        [Uno.WeakReference] internal readonly MainView __parentInstance;
-        public Template1(MainView parent, MainView parentInstance): base("studentList", false)
-        {
-            __parent = parent;
-            __parentInstance = parentInstance;
-        }
-        static Template1()
-        {
-        }
-        public override object New()
-        {
-            var self = new StudentListPage(__parent.router);
-            self.Padding = float4(0f, 5f, 0f, 5f);
-            self.Name = __selector0;
-            return self;
-        }
-        static global::Uno.UX.Selector __selector0 = "studentList";
-    }
+    readonly Fuse.Navigation.Router router;
     global::Uno.UX.Property<Fuse.Visual> nav_Active_inst;
     global::Uno.UX.Property<float4> indicator_Color_inst;
     global::Uno.UX.Property<float4> bgColor_Color_inst;
@@ -60,14 +17,18 @@ public partial class MainView: Fuse.App
     global::Uno.UX.Property<float> h2_Opacity_inst;
     global::Uno.UX.Property<float> col2_Width_inst;
     global::Uno.UX.Property<float4> c2_Color_inst;
+    internal Fuse.Controls.Image back;
+    internal Fuse.Reactive.EventBinding temp_eb3;
     internal Fuse.Controls.Text titleText;
     internal Fuse.Controls.Rectangle indicator;
     internal Fuse.Controls.Panel p1;
     internal Fuse.Controls.Panel p4;
     internal Fuse.Layouts.Column col1;
     internal Fuse.Layouts.Column col2;
+    internal Fuse.Controls.Panel dailyTab;
     internal TabIcon c1;
     internal TabHeader h1;
+    internal Fuse.Controls.Panel historyTab;
     internal TabIcon c2;
     internal TabHeader h2;
     internal Fuse.Controls.PageControl nav;
@@ -76,32 +37,46 @@ public partial class MainView: Fuse.App
     internal Fuse.Animations.Attractor<float4> bgColorAttractor;
     internal Fuse.Animations.Attractor<float4> titleTextAttractor;
     internal Fuse.Triggers.WhileTrue shrinkIndicatorWidth;
-    internal Fuse.Controls.Page page1;
-    internal Fuse.Navigation.Router router;
-    internal Fuse.Controls.Page page2;
+    internal Fuse.Controls.Page daily;
+    internal Fuse.Controls.Page history;
+    global::Uno.UX.NameTable __g_nametable;
+    static string[] __g_static_nametable = new string[] {
+        "router",
+        "back",
+        "titleText",
+        "indicator",
+        "p1",
+        "p4",
+        "col1",
+        "col2",
+        "dailyTab",
+        "c1",
+        "h1",
+        "historyTab",
+        "c2",
+        "h2",
+        "nav",
+        "indicatorColorAttractor",
+        "bgColor",
+        "bgColorAttractor",
+        "titleTextAttractor",
+        "shrinkIndicatorWidth",
+        "daily",
+        "history"
+    };
     static MainView()
     {
     }
     [global::Uno.UX.UXConstructor]
-    public MainView()
+    public MainView(
+		[global::Uno.UX.UXParameter("router")] Fuse.Navigation.Router router)
     {
+        this.router = router;
         InitializeUX();
     }
     void InitializeUX()
     {
-        var temp = new Fuse.Reactive.FuseJS.TimerModule();
-        var temp1 = new Fuse.Reactive.FuseJS.Http();
-        var temp2 = new Fuse.Triggers.BusyTaskModule();
-        var temp3 = new Fuse.FileSystem.FileSystemModule();
-        var temp4 = new Fuse.Storage.StorageModule();
-        var temp5 = new Polyfills.Window.WindowModule();
-        var temp6 = new FuseJS.Globals();
-        var temp7 = new FuseJS.Lifecycle();
-        var temp8 = new FuseJS.Environment();
-        var temp9 = new FuseJS.Base64();
-        var temp10 = new FuseJS.Bundle();
-        var temp11 = new FuseJS.FileReaderImpl();
-        var temp12 = new FuseJS.UserEvents();
+        __g_nametable = new global::Uno.UX.NameTable(null, __g_static_nametable);
         nav = new Fuse.Controls.PageControl();
         nav_Active_inst = new Instructor_FuseControlsPageControl_Active_Property(nav, __selector0);
         indicator = new Fuse.Controls.Rectangle();
@@ -131,224 +106,241 @@ public partial class MainView: Fuse.App
         col2_Width_inst = new Instructor_FuseLayoutsColumn_Width_Property(col2, __selector3);
         c2 = new TabIcon();
         c2_Color_inst = new Instructor_TabIcon_Color_Property(c2, __selector1);
-        var temp13 = new Fuse.Controls.ClientPanel();
-        var temp14 = new Fuse.Controls.Grid();
-        var temp15 = new Fuse.Controls.Grid();
-        var temp16 = new Fuse.Controls.Image();
-        var temp17 = new Fuse.Gestures.Clicked();
-        var temp18 = new Fuse.Animations.Scale();
-        var temp19 = new Fuse.Controls.Image();
-        var temp20 = new Fuse.Controls.Panel();
-        var temp21 = new Fuse.Controls.Grid();
+        var temp = new Fuse.Reactive.JavaScript(__g_nametable);
+        var temp1 = new Fuse.Controls.Grid();
+        back = new Fuse.Controls.Image();
+        var temp2 = new Fuse.Gestures.Clicked();
+        var temp3 = new Fuse.Animations.Scale();
+        var temp4 = new Fuse.Effects.DropShadow();
+        temp_eb3 = new Fuse.Reactive.EventBinding("goBack");
+        var temp5 = new Fuse.Controls.Panel();
+        var temp6 = new Fuse.Controls.Grid();
         p1 = new Fuse.Controls.Panel();
         p4 = new Fuse.Controls.Panel();
-        var temp22 = new Fuse.Controls.Grid();
-        var temp23 = new Fuse.Controls.Panel();
-        var temp24 = new Fuse.Controls.Grid();
-        var temp25 = new Fuse.Gestures.Clicked();
-        var temp26 = new Fuse.Triggers.Actions.Set<Fuse.Visual>(nav_Active_inst);
-        var temp27 = new Fuse.Controls.Panel();
-        var temp28 = new Fuse.Controls.Grid();
-        var temp29 = new Fuse.Gestures.Clicked();
-        var temp30 = new Fuse.Triggers.Actions.Set<Fuse.Visual>(nav_Active_inst);
-        var temp31 = new Fuse.Motion.NavigationMotion();
-        var temp32 = new Fuse.Animations.Change<Uno.UX.Size>(indicator_Width_inst);
-        page1 = new Fuse.Controls.Page();
-        router = new Fuse.Navigation.Router();
-        var temp33 = new Fuse.Controls.Navigator();
-        var home = new Template(this, this);
-        var studentList = new Template1(this, this);
-        var temp34 = new Fuse.Navigation.WhileActive();
-        var temp35 = new Fuse.Triggers.Actions.Set<bool>(shrinkIndicatorWidth_Value_inst);
-        var temp36 = new Fuse.Triggers.Actions.Set<float4>(indicatorColorAttractor_Value_inst);
-        var temp37 = new Fuse.Triggers.Actions.Set<float4>(bgColorAttractor_Value_inst);
-        var temp38 = new Fuse.Triggers.Actions.Set<float4>(titleTextAttractor_Value_inst);
-        var temp39 = new Fuse.Navigation.ActivatingAnimation();
-        var temp40 = new Fuse.Animations.Change<float>(h1_Opacity_inst);
-        var temp41 = new Fuse.Animations.Change<float>(col1_Width_inst);
-        var temp42 = new Fuse.Animations.Change<float4>(c1_Color_inst);
-        page2 = new Fuse.Controls.Page();
-        var temp43 = new Fuse.Navigation.WhileActive();
-        var temp44 = new Fuse.Triggers.Actions.Set<bool>(shrinkIndicatorWidth_Value_inst);
-        var temp45 = new Fuse.Triggers.Actions.Set<float4>(indicatorColorAttractor_Value_inst);
-        var temp46 = new Fuse.Triggers.Actions.Set<float4>(bgColorAttractor_Value_inst);
-        var temp47 = new Fuse.Triggers.Actions.Set<float4>(titleTextAttractor_Value_inst);
-        var temp48 = new Fuse.Navigation.ActivatingAnimation();
-        var temp49 = new Fuse.Animations.Move();
-        var temp50 = new Fuse.Navigation.ActivatingAnimation();
-        var temp51 = new Fuse.Animations.Change<float>(h2_Opacity_inst);
-        var temp52 = new Fuse.Animations.Change<float>(col2_Width_inst);
-        var temp53 = new Fuse.Animations.Change<float4>(c2_Color_inst);
-        temp13.Children.Add(temp14);
-        temp13.Children.Add(temp20);
-        temp13.Children.Add(nav);
-        temp14.Columns = "auto,1*,auto";
-        temp14.Color = ColorPalette.GrayBlue;
-        temp14.Height = new Uno.UX.Size(60f, Uno.UX.Unit.Unspecified);
-        global::Fuse.Controls.DockPanel.SetDock(temp14, Fuse.Layouts.Dock.Top);
-        temp14.Children.Add(temp15);
-        temp14.Children.Add(titleText);
-        temp14.Children.Add(temp19);
-        temp15.RowCount = 2;
-        temp15.ColumnCount = 2;
-        temp15.Width = new Uno.UX.Size(22f, Uno.UX.Unit.Unspecified);
-        temp15.Height = new Uno.UX.Size(22f, Uno.UX.Unit.Unspecified);
-        temp15.Margin = float4(10f, 10f, 10f, 10f);
-        temp15.Children.Add(temp16);
-        temp15.Children.Add(temp17);
-        temp16.Width = new Uno.UX.Size(30f, Uno.UX.Unit.Unspecified);
-        temp16.Height = new Uno.UX.Size(30f, Uno.UX.Unit.Unspecified);
-        temp16.Margin = float4(10f, 10f, 10f, 10f);
-        temp16.File = new global::Uno.UX.BundleFileSource(import global::Uno.IO.BundleFile("../../../../../Assets/menu.png"));
-        temp17.Animators.Add(temp18);
-        temp18.Factor = 0.8f;
-        temp18.Easing = Fuse.Animations.Easing.CubicInOut;
-        temp18.Duration = 0.15;
+        var temp7 = new Fuse.Controls.Grid();
+        dailyTab = new Fuse.Controls.Panel();
+        var temp8 = new Fuse.Controls.Grid();
+        var temp9 = new Fuse.Gestures.Clicked();
+        var temp10 = new Fuse.Triggers.Actions.Set<Fuse.Visual>(nav_Active_inst);
+        historyTab = new Fuse.Controls.Panel();
+        var temp11 = new Fuse.Controls.Grid();
+        var temp12 = new Fuse.Gestures.Clicked();
+        var temp13 = new Fuse.Triggers.Actions.Set<Fuse.Visual>(nav_Active_inst);
+        var temp14 = new Fuse.Motion.NavigationMotion();
+        var temp15 = new Fuse.Animations.Change<Uno.UX.Size>(indicator_Width_inst);
+        daily = new Fuse.Controls.Page();
+        var temp16 = new StudentListPage();
+        var temp17 = new Fuse.Navigation.WhileActive();
+        var temp18 = new Fuse.Triggers.Actions.Set<bool>(shrinkIndicatorWidth_Value_inst);
+        var temp19 = new Fuse.Triggers.Actions.Set<float4>(indicatorColorAttractor_Value_inst);
+        var temp20 = new Fuse.Triggers.Actions.Set<float4>(bgColorAttractor_Value_inst);
+        var temp21 = new Fuse.Triggers.Actions.Set<float4>(titleTextAttractor_Value_inst);
+        var temp22 = new Fuse.Navigation.ActivatingAnimation();
+        var temp23 = new Fuse.Animations.Change<float>(h1_Opacity_inst);
+        var temp24 = new Fuse.Animations.Change<float>(col1_Width_inst);
+        var temp25 = new Fuse.Animations.Change<float4>(c1_Color_inst);
+        history = new Fuse.Controls.Page();
+        var temp26 = new HistoryPage();
+        var temp27 = new Fuse.Navigation.WhileActive();
+        var temp28 = new Fuse.Triggers.Actions.Set<bool>(shrinkIndicatorWidth_Value_inst);
+        var temp29 = new Fuse.Triggers.Actions.Set<float4>(indicatorColorAttractor_Value_inst);
+        var temp30 = new Fuse.Triggers.Actions.Set<float4>(bgColorAttractor_Value_inst);
+        var temp31 = new Fuse.Triggers.Actions.Set<float4>(titleTextAttractor_Value_inst);
+        var temp32 = new Fuse.Navigation.ActivatingAnimation();
+        var temp33 = new Fuse.Animations.Move();
+        var temp34 = new Fuse.Navigation.ActivatingAnimation();
+        var temp35 = new Fuse.Animations.Change<float>(h2_Opacity_inst);
+        var temp36 = new Fuse.Animations.Change<float>(col2_Width_inst);
+        var temp37 = new Fuse.Animations.Change<float4>(c2_Color_inst);
+        temp.LineNumber = 3;
+        temp.FileName = "MainView.ux";
+        temp.File = new global::Uno.UX.BundleFileSource(import global::Uno.IO.BundleFile("../../../../../MainView.js"));
+        temp1.ColumnCount = 5;
+        temp1.Color = float4(0.3254902f, 0.4313726f, 0.5137255f, 1f);
+        temp1.Height = new Uno.UX.Size(60f, Uno.UX.Unit.Unspecified);
+        global::Fuse.Controls.DockPanel.SetDock(temp1, Fuse.Layouts.Dock.Top);
+        temp1.Children.Add(back);
+        temp1.Children.Add(titleText);
+        back.Width = new Uno.UX.Size(50f, Uno.UX.Unit.Unspecified);
+        back.Height = new Uno.UX.Size(30f, Uno.UX.Unit.Unspecified);
+        back.Alignment = Fuse.Elements.Alignment.Left;
+        back.Margin = float4(10f, 10f, 10f, 10f);
+        back.Name = __selector6;
+        global::Fuse.Gestures.Clicked.AddHandler(back, temp_eb3.OnEvent);
+        back.File = new global::Uno.UX.BundleFileSource(import global::Uno.IO.BundleFile("../../../../../Assets/imageedit_1_9094223435.png"));
+        back.Children.Add(temp2);
+        back.Children.Add(temp4);
+        back.Bindings.Add(temp_eb3);
+        temp2.Animators.Add(temp3);
+        temp3.Factor = 0.8f;
+        temp3.Duration = 0.1;
+        temp3.Easing = Fuse.Animations.Easing.CubicInOut;
         titleText.Value = "Here!";
         titleText.FontSize = 25f;
         titleText.TextColor = Fuse.Drawing.Colors.White;
         titleText.Alignment = Fuse.Elements.Alignment.Center;
-        titleText.Name = __selector6;
-        temp19.Width = new Uno.UX.Size(30f, Uno.UX.Unit.Unspecified);
-        temp19.Height = new Uno.UX.Size(30f, Uno.UX.Unit.Unspecified);
-        temp19.Margin = float4(10f, 10f, 10f, 10f);
-        temp19.File = new global::Uno.UX.BundleFileSource(import global::Uno.IO.BundleFile("../../../../../Assets/search.png"));
-        temp20.Height = new Uno.UX.Size(60f, Uno.UX.Unit.Unspecified);
-        global::Fuse.Controls.DockPanel.SetDock(temp20, Fuse.Layouts.Dock.Top);
-        temp20.Children.Add(indicator);
-        temp20.Children.Add(temp21);
-        temp20.Children.Add(temp22);
+        titleText.Name = __selector7;
+        global::Fuse.Controls.Grid.SetColumn(titleText, 2);
+        temp5.Height = new Uno.UX.Size(60f, Uno.UX.Unit.Unspecified);
+        global::Fuse.Controls.DockPanel.SetDock(temp5, Fuse.Layouts.Dock.Top);
+        temp5.Children.Add(indicator);
+        temp5.Children.Add(temp6);
+        temp5.Children.Add(temp7);
         indicator.CornerRadius = float4(30f, 30f, 30f, 30f);
-        indicator.Color = ColorPalette.SkyBlue;
+        indicator.Color = float4(0.627451f, 0.8666667f, 0.8117647f, 1f);
         indicator.Width = new Uno.UX.Size(100f, Uno.UX.Unit.Percent);
         indicator.Margin = float4(0f, 10f, 0f, 10f);
         indicator.ZOffset = 0.1f;
-        indicator.Name = __selector7;
+        indicator.Name = __selector8;
         global::Fuse.Controls.LayoutControl.SetLayoutMaster(indicator, p1);
-        temp21.ColumnCount = 5;
-        temp21.Margin = float4(-30f, 0f, -30f, 0f);
-        temp21.Children.Add(p1);
-        temp21.Children.Add(p4);
-        p1.Name = __selector8;
+        temp6.ColumnCount = 5;
+        temp6.Margin = float4(-30f, 0f, -30f, 0f);
+        temp6.Children.Add(p1);
+        temp6.Children.Add(p4);
+        p1.Name = __selector9;
         global::Fuse.Controls.Grid.SetColumn(p1, 0);
         global::Fuse.Controls.Grid.SetColumnSpan(p1, 3);
-        p4.Name = __selector9;
+        p4.Name = __selector10;
         global::Fuse.Controls.Grid.SetColumn(p4, 3);
         global::Fuse.Controls.Grid.SetColumnSpan(p4, 3);
-        temp22.Margin = float4(-20f, 0f, -20f, 0f);
-        temp22.ZOffset = 1f;
-        temp22.ColumnList.Add(col1);
-        temp22.ColumnList.Add(col2);
-        temp22.Children.Add(temp23);
-        temp22.Children.Add(temp27);
+        temp7.Margin = float4(-20f, 0f, -20f, 0f);
+        temp7.ZOffset = 1f;
+        temp7.ColumnList.Add(col1);
+        temp7.ColumnList.Add(col2);
+        temp7.Children.Add(dailyTab);
+        temp7.Children.Add(historyTab);
         col1.WidthMetric = Fuse.Layouts.Metric.Proportion;
         col1.Width = 1f;
         col2.WidthMetric = Fuse.Layouts.Metric.Proportion;
         col2.Width = 1f;
-        temp23.HitTestMode = Fuse.Elements.HitTestMode.LocalBounds;
-        temp23.Children.Add(temp24);
-        temp23.Children.Add(temp25);
-        temp24.Columns = "auto,1*";
-        temp24.Alignment = Fuse.Elements.Alignment.Left;
-        temp24.Margin = float4(40f, 0f, 40f, 0f);
-        temp24.Children.Add(c1);
-        temp24.Children.Add(h1);
-        c1.Color = ColorPalette.SkyBlue;
-        c1.Name = __selector10;
+        dailyTab.HitTestMode = Fuse.Elements.HitTestMode.LocalBounds;
+        dailyTab.Name = __selector11;
+        dailyTab.Children.Add(temp8);
+        dailyTab.Children.Add(temp9);
+        temp8.Columns = "auto,1*";
+        temp8.Alignment = Fuse.Elements.Alignment.Left;
+        temp8.Margin = float4(40f, 0f, 40f, 0f);
+        temp8.Children.Add(c1);
+        temp8.Children.Add(h1);
+        c1.Color = float4(0.627451f, 0.8666667f, 0.8117647f, 1f);
+        c1.Name = __selector12;
         c1.File = new global::Uno.UX.BundleFileSource(import global::Uno.IO.BundleFile("../../../../../Assets/imageedit_29_9531740058.png"));
         h1.Value = "Daily";
-        h1.Name = __selector11;
-        temp25.Actions.Add(temp26);
-        temp26.Value = page1;
-        temp27.HitTestMode = Fuse.Elements.HitTestMode.LocalBounds;
-        temp27.Children.Add(temp28);
-        temp27.Children.Add(temp29);
-        temp28.Columns = "auto,1*";
-        temp28.Alignment = Fuse.Elements.Alignment.Right;
-        temp28.Margin = float4(30f, 0f, 30f, 0f);
-        temp28.Children.Add(c2);
-        temp28.Children.Add(h2);
-        c2.Color = ColorPalette.Pink;
-        c2.Name = __selector12;
+        h1.Name = __selector13;
+        temp9.Actions.Add(temp10);
+        temp10.Value = daily;
+        historyTab.HitTestMode = Fuse.Elements.HitTestMode.LocalBounds;
+        historyTab.Name = __selector14;
+        historyTab.Children.Add(temp11);
+        historyTab.Children.Add(temp12);
+        temp11.Columns = "auto,1*";
+        temp11.Alignment = Fuse.Elements.Alignment.Right;
+        temp11.Margin = float4(30f, 0f, 30f, 0f);
+        temp11.Children.Add(c2);
+        temp11.Children.Add(h2);
+        c2.Color = float4(0.9843137f, 0.5176471f, 0.4470588f, 1f);
+        c2.Name = __selector15;
         c2.File = new global::Uno.UX.BundleFileSource(import global::Uno.IO.BundleFile("../../../../../Assets/imageedit_6_9453632760.png"));
         h2.Value = "History";
-        h2.Name = __selector13;
-        temp29.Actions.Add(temp30);
-        temp30.Value = page2;
-        nav.Name = __selector14;
-        nav.Motion = temp31;
+        h2.Name = __selector16;
+        temp12.Actions.Add(temp13);
+        temp13.Value = history;
+        nav.Name = __selector17;
+        nav.Motion = temp14;
         nav.Children.Add(indicatorColorAttractor);
         nav.Children.Add(bgColor);
         nav.Children.Add(bgColorAttractor);
         nav.Children.Add(titleTextAttractor);
         nav.Children.Add(shrinkIndicatorWidth);
-        nav.Children.Add(page1);
-        nav.Children.Add(page2);
-        temp31.GotoEasing = Fuse.Animations.Easing.BackOut;
-        indicatorColorAttractor.Value = ColorPalette.SkyBlue;
-        indicatorColorAttractor.Name = __selector15;
-        bgColor.Color = ColorPalette.SkyBlue;
+        nav.Children.Add(daily);
+        nav.Children.Add(history);
+        temp14.GotoEasing = Fuse.Animations.Easing.BackOut;
+        indicatorColorAttractor.Value = float4(0.627451f, 0.8666667f, 0.8117647f, 1f);
+        indicatorColorAttractor.Name = __selector18;
+        bgColor.Color = float4(0.627451f, 0.8666667f, 0.8117647f, 1f);
         bgColor.Opacity = 0.12f;
         bgColor.Layer = Fuse.Layer.Background;
-        bgColor.Name = __selector16;
-        bgColorAttractor.Value = ColorPalette.SkyBlue;
-        bgColorAttractor.Name = __selector17;
-        titleTextAttractor.Value = ColorPalette.SkyBlue;
-        titleTextAttractor.Name = __selector18;
-        shrinkIndicatorWidth.Name = __selector19;
-        shrinkIndicatorWidth.Animators.Add(temp32);
-        temp32.Value = new Uno.UX.Size(90f, Uno.UX.Unit.Unspecified);
-        temp32.Duration = 0.25;
-        page1.Name = __selector20;
-        page1.Children.Add(router);
-        page1.Children.Add(temp33);
-        page1.Children.Add(temp34);
-        page1.Children.Add(temp39);
-        router.Name = __selector21;
-        temp33.DefaultTemplate = "home";
-        temp33.Templates.Add(home);
-        temp33.Templates.Add(studentList);
-        temp34.Threshold = 0.5f;
-        temp34.Actions.Add(temp35);
-        temp34.Actions.Add(temp36);
-        temp34.Actions.Add(temp37);
-        temp34.Actions.Add(temp38);
-        temp35.Value = false;
-        temp36.Value = ColorPalette.SkyBlue;
-        temp37.Value = ColorPalette.SkyBlue;
-        temp38.Value = ColorPalette.SkyBlue;
-        temp39.Animators.Add(temp40);
-        temp39.Animators.Add(temp41);
-        temp39.Animators.Add(temp42);
-        temp40.Value = 1f;
-        temp41.Value = 2f;
-        temp42.Value = Fuse.Drawing.Colors.White;
-        page2.Name = __selector22;
-        page2.Children.Add(temp43);
-        page2.Children.Add(temp48);
-        page2.Children.Add(temp50);
-        temp43.Threshold = 0.5f;
-        temp43.Actions.Add(temp44);
-        temp43.Actions.Add(temp45);
-        temp43.Actions.Add(temp46);
-        temp43.Actions.Add(temp47);
-        temp44.Value = false;
-        temp45.Value = ColorPalette.Pink;
-        temp46.Value = ColorPalette.Pink;
-        temp47.Value = ColorPalette.Pink;
-        temp48.Scale = 1f;
-        temp48.Animators.Add(temp49);
-        temp49.X = 1f;
-        temp49.RelativeTo = Fuse.Elements.TranslationModes.PositionOffset;
-        temp49.RelativeNode = p4;
-        temp49.Target = indicator;
-        temp50.Animators.Add(temp51);
-        temp50.Animators.Add(temp52);
-        temp50.Animators.Add(temp53);
-        temp51.Value = 1f;
-        temp52.Value = 2f;
-        temp53.Value = Fuse.Drawing.Colors.White;
-        this.Children.Add(temp13);
+        bgColor.Name = __selector19;
+        bgColorAttractor.Value = float4(0.627451f, 0.8666667f, 0.8117647f, 1f);
+        bgColorAttractor.Name = __selector20;
+        titleTextAttractor.Value = float4(0.627451f, 0.8666667f, 0.8117647f, 1f);
+        titleTextAttractor.Name = __selector21;
+        shrinkIndicatorWidth.Name = __selector22;
+        shrinkIndicatorWidth.Animators.Add(temp15);
+        temp15.Value = new Uno.UX.Size(90f, Uno.UX.Unit.Unspecified);
+        temp15.Duration = 0.25;
+        daily.Name = __selector23;
+        daily.Children.Add(temp16);
+        daily.Children.Add(temp17);
+        daily.Children.Add(temp22);
+        temp17.Threshold = 0.5f;
+        temp17.Actions.Add(temp18);
+        temp17.Actions.Add(temp19);
+        temp17.Actions.Add(temp20);
+        temp17.Actions.Add(temp21);
+        temp18.Value = false;
+        temp19.Value = float4(0.627451f, 0.8666667f, 0.8117647f, 1f);
+        temp20.Value = float4(0.627451f, 0.8666667f, 0.8117647f, 1f);
+        temp21.Value = float4(0.627451f, 0.8666667f, 0.8117647f, 1f);
+        temp22.Animators.Add(temp23);
+        temp22.Animators.Add(temp24);
+        temp22.Animators.Add(temp25);
+        temp23.Value = 1f;
+        temp24.Value = 2f;
+        temp25.Value = Fuse.Drawing.Colors.White;
+        history.Name = __selector24;
+        history.Children.Add(temp26);
+        history.Children.Add(temp27);
+        history.Children.Add(temp32);
+        history.Children.Add(temp34);
+        temp27.Threshold = 0.5f;
+        temp27.Actions.Add(temp28);
+        temp27.Actions.Add(temp29);
+        temp27.Actions.Add(temp30);
+        temp27.Actions.Add(temp31);
+        temp28.Value = false;
+        temp29.Value = float4(0.9843137f, 0.5176471f, 0.4470588f, 1f);
+        temp30.Value = float4(0.9843137f, 0.5176471f, 0.4470588f, 1f);
+        temp31.Value = float4(0.9843137f, 0.5176471f, 0.4470588f, 1f);
+        temp32.Scale = 1f;
+        temp32.Animators.Add(temp33);
+        temp33.X = 1f;
+        temp33.RelativeTo = Fuse.Elements.TranslationModes.PositionOffset;
+        temp33.RelativeNode = p4;
+        temp33.Target = indicator;
+        temp34.Animators.Add(temp35);
+        temp34.Animators.Add(temp36);
+        temp34.Animators.Add(temp37);
+        temp35.Value = 1f;
+        temp36.Value = 2f;
+        temp37.Value = Fuse.Drawing.Colors.White;
+        __g_nametable.This = this;
+        __g_nametable.Objects.Add(router);
+        __g_nametable.Objects.Add(back);
+        __g_nametable.Objects.Add(titleText);
+        __g_nametable.Objects.Add(indicator);
+        __g_nametable.Objects.Add(p1);
+        __g_nametable.Objects.Add(p4);
+        __g_nametable.Objects.Add(col1);
+        __g_nametable.Objects.Add(col2);
+        __g_nametable.Objects.Add(dailyTab);
+        __g_nametable.Objects.Add(c1);
+        __g_nametable.Objects.Add(h1);
+        __g_nametable.Objects.Add(historyTab);
+        __g_nametable.Objects.Add(c2);
+        __g_nametable.Objects.Add(h2);
+        __g_nametable.Objects.Add(nav);
+        __g_nametable.Objects.Add(indicatorColorAttractor);
+        __g_nametable.Objects.Add(bgColor);
+        __g_nametable.Objects.Add(bgColorAttractor);
+        __g_nametable.Objects.Add(titleTextAttractor);
+        __g_nametable.Objects.Add(shrinkIndicatorWidth);
+        __g_nametable.Objects.Add(daily);
+        __g_nametable.Objects.Add(history);
+        this.Children.Add(temp);
+        this.Children.Add(temp1);
+        this.Children.Add(temp5);
+        this.Children.Add(nav);
     }
     static global::Uno.UX.Selector __selector0 = "Active";
     static global::Uno.UX.Selector __selector1 = "Color";
@@ -356,21 +348,23 @@ public partial class MainView: Fuse.App
     static global::Uno.UX.Selector __selector3 = "Width";
     static global::Uno.UX.Selector __selector4 = "Value";
     static global::Uno.UX.Selector __selector5 = "Opacity";
-    static global::Uno.UX.Selector __selector6 = "titleText";
-    static global::Uno.UX.Selector __selector7 = "indicator";
-    static global::Uno.UX.Selector __selector8 = "p1";
-    static global::Uno.UX.Selector __selector9 = "p4";
-    static global::Uno.UX.Selector __selector10 = "c1";
-    static global::Uno.UX.Selector __selector11 = "h1";
-    static global::Uno.UX.Selector __selector12 = "c2";
-    static global::Uno.UX.Selector __selector13 = "h2";
-    static global::Uno.UX.Selector __selector14 = "nav";
-    static global::Uno.UX.Selector __selector15 = "indicatorColorAttractor";
-    static global::Uno.UX.Selector __selector16 = "bgColor";
-    static global::Uno.UX.Selector __selector17 = "bgColorAttractor";
-    static global::Uno.UX.Selector __selector18 = "titleTextAttractor";
-    static global::Uno.UX.Selector __selector19 = "shrinkIndicatorWidth";
-    static global::Uno.UX.Selector __selector20 = "page1";
-    static global::Uno.UX.Selector __selector21 = "router";
-    static global::Uno.UX.Selector __selector22 = "page2";
+    static global::Uno.UX.Selector __selector6 = "back";
+    static global::Uno.UX.Selector __selector7 = "titleText";
+    static global::Uno.UX.Selector __selector8 = "indicator";
+    static global::Uno.UX.Selector __selector9 = "p1";
+    static global::Uno.UX.Selector __selector10 = "p4";
+    static global::Uno.UX.Selector __selector11 = "dailyTab";
+    static global::Uno.UX.Selector __selector12 = "c1";
+    static global::Uno.UX.Selector __selector13 = "h1";
+    static global::Uno.UX.Selector __selector14 = "historyTab";
+    static global::Uno.UX.Selector __selector15 = "c2";
+    static global::Uno.UX.Selector __selector16 = "h2";
+    static global::Uno.UX.Selector __selector17 = "nav";
+    static global::Uno.UX.Selector __selector18 = "indicatorColorAttractor";
+    static global::Uno.UX.Selector __selector19 = "bgColor";
+    static global::Uno.UX.Selector __selector20 = "bgColorAttractor";
+    static global::Uno.UX.Selector __selector21 = "titleTextAttractor";
+    static global::Uno.UX.Selector __selector22 = "shrinkIndicatorWidth";
+    static global::Uno.UX.Selector __selector23 = "daily";
+    static global::Uno.UX.Selector __selector24 = "history";
 }

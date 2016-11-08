@@ -142,14 +142,41 @@ sealed class Instructor_FuseTriggersWhileTrue_Value_Property: Uno.UX.Property<bo
     public override void Set(bool v, global::Uno.UX.IPropertyListener origin) { _obj.Value = v; }
     public override bool SupportsOriginSetter { get { return false; } }
 }
-sealed class Instructor_FuseControlsPageControl_Active_Property: Uno.UX.Property<Fuse.Visual>
+sealed class Instructor_HidingPanel_IsEnabled_Property: Uno.UX.Property<bool>
 {
-    [Uno.WeakReference] readonly Fuse.Controls.PageControl _obj;
-    public Instructor_FuseControlsPageControl_Active_Property(Fuse.Controls.PageControl obj, global::Uno.UX.Selector name) : base(name) { _obj = obj; }
+    [Uno.WeakReference] readonly HidingPanel _obj;
+    public Instructor_HidingPanel_IsEnabled_Property(HidingPanel obj, global::Uno.UX.Selector name) : base(name) { _obj = obj; }
     public override global::Uno.UX.PropertyObject Object { get { return _obj; } }
-    public override Fuse.Visual Get() { return _obj.Active; }
-    public override void Set(Fuse.Visual v, global::Uno.UX.IPropertyListener origin) { _obj.Active = v; }
+    public override bool Get() { return _obj.IsEnabled; }
+    public override void Set(bool v, global::Uno.UX.IPropertyListener origin) { _obj.IsEnabled = v; }
     public override bool SupportsOriginSetter { get { return false; } }
+}
+sealed class Instructor_rect_Width_Property: Uno.UX.Property<Uno.UX.Size>
+{
+    [Uno.WeakReference] readonly rect _obj;
+    public Instructor_rect_Width_Property(rect obj, global::Uno.UX.Selector name) : base(name) { _obj = obj; }
+    public override global::Uno.UX.PropertyObject Object { get { return _obj; } }
+    public override Uno.UX.Size Get() { return _obj.Width; }
+    public override void Set(Uno.UX.Size v, global::Uno.UX.IPropertyListener origin) { _obj.Width = v; }
+    public override bool SupportsOriginSetter { get { return false; } }
+}
+sealed class Instructor_FuseControlsText_Offset_Property: Uno.UX.Property<Uno.UX.Size2>
+{
+    [Uno.WeakReference] readonly Fuse.Controls.Text _obj;
+    public Instructor_FuseControlsText_Offset_Property(Fuse.Controls.Text obj, global::Uno.UX.Selector name) : base(name) { _obj = obj; }
+    public override global::Uno.UX.PropertyObject Object { get { return _obj; } }
+    public override Uno.UX.Size2 Get() { return _obj.Offset; }
+    public override void Set(Uno.UX.Size2 v, global::Uno.UX.IPropertyListener origin) { _obj.Offset = v; }
+    public override bool SupportsOriginSetter { get { return false; } }
+}
+sealed class Instructor_FuseControlsText_Opacity_Property: Uno.UX.Property<float>
+{
+    [Uno.WeakReference] readonly Fuse.Controls.Text _obj;
+    public Instructor_FuseControlsText_Opacity_Property(Fuse.Controls.Text obj, global::Uno.UX.Selector name) : base(name) { _obj = obj; }
+    public override global::Uno.UX.PropertyObject Object { get { return _obj; } }
+    public override float Get() { return _obj.Opacity; }
+    public override void Set(float v, global::Uno.UX.IPropertyListener origin) { _obj.SetOpacity(v, origin); }
+    public override bool SupportsOriginSetter { get { return true; } }
 }
 sealed class Instructor_FuseControlsRectangle_Color_Property: Uno.UX.Property<float4>
 {
@@ -158,6 +185,24 @@ sealed class Instructor_FuseControlsRectangle_Color_Property: Uno.UX.Property<fl
     public override global::Uno.UX.PropertyObject Object { get { return _obj; } }
     public override float4 Get() { return _obj.Color; }
     public override void Set(float4 v, global::Uno.UX.IPropertyListener origin) { _obj.SetColor(v, origin); }
+    public override bool SupportsOriginSetter { get { return true; } }
+}
+sealed class Instructor_FuseScaling_Vector_Property: Uno.UX.Property<float3>
+{
+    [Uno.WeakReference] readonly Fuse.Scaling _obj;
+    public Instructor_FuseScaling_Vector_Property(Fuse.Scaling obj, global::Uno.UX.Selector name) : base(name) { _obj = obj; }
+    public override global::Uno.UX.PropertyObject Object { get { return _obj; } }
+    public override float3 Get() { return _obj.Vector; }
+    public override void Set(float3 v, global::Uno.UX.IPropertyListener origin) { _obj.Vector = v; }
+    public override bool SupportsOriginSetter { get { return false; } }
+}
+sealed class Instructor_FuseControlsPanel_Opacity_Property: Uno.UX.Property<float>
+{
+    [Uno.WeakReference] readonly Fuse.Controls.Panel _obj;
+    public Instructor_FuseControlsPanel_Opacity_Property(Fuse.Controls.Panel obj, global::Uno.UX.Selector name) : base(name) { _obj = obj; }
+    public override global::Uno.UX.PropertyObject Object { get { return _obj; } }
+    public override float Get() { return _obj.Opacity; }
+    public override void Set(float v, global::Uno.UX.IPropertyListener origin) { _obj.SetOpacity(v, origin); }
     public override bool SupportsOriginSetter { get { return true; } }
 }
 sealed class Instructor_FuseControlsText_TextColor_Property: Uno.UX.Property<float4>
@@ -169,15 +214,6 @@ sealed class Instructor_FuseControlsText_TextColor_Property: Uno.UX.Property<flo
     public override void Set(float4 v, global::Uno.UX.IPropertyListener origin) { _obj.TextColor = v; }
     public override bool SupportsOriginSetter { get { return false; } }
 }
-sealed class Instructor_FuseControlsRectangle_Width_Property: Uno.UX.Property<Uno.UX.Size>
-{
-    [Uno.WeakReference] readonly Fuse.Controls.Rectangle _obj;
-    public Instructor_FuseControlsRectangle_Width_Property(Fuse.Controls.Rectangle obj, global::Uno.UX.Selector name) : base(name) { _obj = obj; }
-    public override global::Uno.UX.PropertyObject Object { get { return _obj; } }
-    public override Uno.UX.Size Get() { return _obj.Width; }
-    public override void Set(Uno.UX.Size v, global::Uno.UX.IPropertyListener origin) { _obj.Width = v; }
-    public override bool SupportsOriginSetter { get { return false; } }
-}
 sealed class Instructor_FuseAnimationsAttractorfloat4_Value_Property: Uno.UX.Property<float4>
 {
     [Uno.WeakReference] readonly Fuse.Animations.Attractor<float4> _obj;
@@ -185,6 +221,33 @@ sealed class Instructor_FuseAnimationsAttractorfloat4_Value_Property: Uno.UX.Pro
     public override global::Uno.UX.PropertyObject Object { get { return _obj; } }
     public override float4 Get() { return _obj.Value; }
     public override void Set(float4 v, global::Uno.UX.IPropertyListener origin) { _obj.Value = v; }
+    public override bool SupportsOriginSetter { get { return false; } }
+}
+sealed class Instructor_HidingPanel_Opacity_Property: Uno.UX.Property<float>
+{
+    [Uno.WeakReference] readonly HidingPanel _obj;
+    public Instructor_HidingPanel_Opacity_Property(HidingPanel obj, global::Uno.UX.Selector name) : base(name) { _obj = obj; }
+    public override global::Uno.UX.PropertyObject Object { get { return _obj; } }
+    public override float Get() { return _obj.Opacity; }
+    public override void Set(float v, global::Uno.UX.IPropertyListener origin) { _obj.SetOpacity(v, origin); }
+    public override bool SupportsOriginSetter { get { return true; } }
+}
+sealed class Instructor_FuseControlsPageControl_Active_Property: Uno.UX.Property<Fuse.Visual>
+{
+    [Uno.WeakReference] readonly Fuse.Controls.PageControl _obj;
+    public Instructor_FuseControlsPageControl_Active_Property(Fuse.Controls.PageControl obj, global::Uno.UX.Selector name) : base(name) { _obj = obj; }
+    public override global::Uno.UX.PropertyObject Object { get { return _obj; } }
+    public override Fuse.Visual Get() { return _obj.Active; }
+    public override void Set(Fuse.Visual v, global::Uno.UX.IPropertyListener origin) { _obj.Active = v; }
+    public override bool SupportsOriginSetter { get { return false; } }
+}
+sealed class Instructor_FuseControlsRectangle_Width_Property: Uno.UX.Property<Uno.UX.Size>
+{
+    [Uno.WeakReference] readonly Fuse.Controls.Rectangle _obj;
+    public Instructor_FuseControlsRectangle_Width_Property(Fuse.Controls.Rectangle obj, global::Uno.UX.Selector name) : base(name) { _obj = obj; }
+    public override global::Uno.UX.PropertyObject Object { get { return _obj; } }
+    public override Uno.UX.Size Get() { return _obj.Width; }
+    public override void Set(Uno.UX.Size v, global::Uno.UX.IPropertyListener origin) { _obj.Width = v; }
     public override bool SupportsOriginSetter { get { return false; } }
 }
 sealed class Instructor_TabHeader_Opacity_Property: Uno.UX.Property<float>

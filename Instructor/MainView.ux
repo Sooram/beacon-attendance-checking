@@ -3,17 +3,14 @@
 	<JavaScript File="MainView.js" />
 		
 	<!--top title space	-->
-	<Grid Color="GrayBlue" Columns="auto,1*,auto" Height="60" Dock="Top">
-		<Grid ColumnCount="2" RowCount="2" Width="22" Height="22" Margin="10">
-			<Image ux:Name="back" File="Assets/imageedit_1_9094223435.png" Height="30" Width="50" Margin="0,10" Clicked="{goBack}" Alignment="Left">
-				<Clicked>
-					<Scale Factor="0.8" Duration=".1" Easing="CubicInOut" />
-				</Clicked>	
-				<DropShadow/>					
-			</Image> 
-		</Grid>
-		<Text ux:Name="titleText" Value="Here!" TextColor="White" FontSize="25" Alignment="Center"/>
-		<Image File="Assets/search.png" Width="30" Height="30" Margin="20"/>
+	<Grid Color="GrayBlue" ColumnCount="5" Height="60" Dock="Top">	
+		<Image ux:Name="back" File="Assets/imageedit_1_9094223435.png" Height="30" Width="50" Margin="10" Clicked="{goBack}" Alignment="Left">
+			<Clicked>
+				<Scale Factor="0.8" Duration=".1" Easing="CubicInOut" />
+			</Clicked>	
+			<DropShadow/>					
+		</Image> 
+		<Text ux:Name="titleText" Value="Here!" TextColor="White" FontSize="25" Alignment="Center" Column="2"/>
 	</Grid>
 
 	<!--tab indicator-->

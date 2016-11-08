@@ -135,12 +135,12 @@ return _cache[path];
 
 #pragma reset
 
-/* #00000000; c:\BuildAgent\work\b939dc4c6ac331f9\Source\Outracks.Simulator.Compiler\Selection\RuntimeSelection.cs ; */
+/* #00000000; c:\BuildAgent-1\work\b939dc4c6ac331f9\Source\Outracks.Simulator.Compiler\Selection\RuntimeSelection.cs ; */
 
 
 #pragma reset
 
-/* #00000000; c:\BuildAgent\work\b939dc4c6ac331f9\Source\Outracks.Simulator.Compiler\CodeGeneration\RuntimeTagRegistry.cs ; */
+/* #00000000; c:\BuildAgent-1\work\b939dc4c6ac331f9\Source\Outracks.Simulator.Compiler\CodeGeneration\RuntimeTagRegistry.cs ; */
 
 
 #pragma reset
@@ -208,7 +208,7 @@ public class GeneratedApplication
 : Outracks.Simulator.Application
 {
 public GeneratedApplication()
-: base(new [] {new Uno.Net.IPEndPoint(Uno.Net.IPAddress.Parse("147.47.188.226"), 12124), new Uno.Net.IPEndPoint(Uno.Net.IPAddress.Parse("127.0.0.1"), 12124)}, "C:\\Users\\Sooram\\Documents\\fuse\\Instructor\\Instructor.unoproj", GetBundle, new string[] { ""})
+: base(new [] {new Uno.Net.IPEndPoint(Uno.Net.IPAddress.Parse("127.0.0.1"), 12124), new Uno.Net.IPEndPoint(Uno.Net.IPAddress.Parse("192.168.0.10"), 12124)}, "C:\\Users\\Administrator\\Documents\\Fuse project\\Instructor\\Instructor.unoproj", GetBundle, new string[] { ""})
 {
 
 							if defined(CPLUSPLUS)

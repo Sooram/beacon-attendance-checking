@@ -14,14 +14,10 @@
 			<DropShadow />
 
 			<DockPanel Margin="20, 0">
-				<Text Value="{Property StudentID}"  FontSize="18" Color="Black" Dock="Left" Alignment="VerticalCenter">
-					<Font File="Assets/Fonts/Roboto-Regular.ttf"/>
-				</Text>
+				<Text Value="{Property StudentID}"  FontSize="18" Color="DarkGray" Dock="Left" Alignment="VerticalCenter" />
 					
-				<Text Value="{Property StudentName}" FontSize="20" Color="Black" Alignment="VerticalCenter" Margin="20,0">
-					 <Font File="Assets/Fonts/Roboto-Regular.ttf"/>
-				</Text>
-
+				<Text Value="{Property StudentName}" FontSize="20" Color="Black" Alignment="VerticalCenter" Margin="20,0" />
+				
 				<Circle ux:Name="Attendance" Color="{Property CircleColor}" Width="30" Height="30" Alignment="Right">
 					<DropShadow />
 					<Clicked>
@@ -48,7 +44,7 @@
 					<StudentList ux:Name="item" StudentID="{id}" StudentName="{name}" CircleColor="{color}"/>
 				</Each>
 
-				<Rectangle ux:Name="save" Color="#a58a9a" CornerRadius="6" Height="30" Width="50" Margin="20,10" Alignment="Right">
+				<Rectangle ux:Name="save" Color="GrayBlue" CornerRadius="6" Height="30" Width="50" Margin="20,10" Alignment="Right">
 					<Text Value="Save" Color="White" FontSize="15" Alignment="Center" Clicked="{save}"/>
 					<Clicked>
 						<Scale Factor="0.8" Duration=".1" Easing="CubicInOut" />
