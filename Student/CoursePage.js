@@ -20,7 +20,7 @@ function loadCourses() {
 		exit: "10:52"
 	},
 	{
-		time: "15:30",
+		time: "14:00",
 		name: "Database",
 		color: "#ff0",
 		enter: "08:56",
@@ -28,7 +28,7 @@ function loadCourses() {
 	},
 	{
 		time: "15:30",
-		name: "Database",
+		name: "Chinese",
 		color: "#ff0",
 		enter: "08:56",
 		exit: "10:52"
@@ -39,16 +39,17 @@ function loadCourses() {
 
 loadCourses();
 
+var isLoading = Observable(false);
+
 function endLoading(){
 	isLoading.value = false;
 }
 
 function reloadHandler(){
+	//TODO
 	isLoading.value = true;
 	setTimeout(endLoading, 3000);
 }
-
-var isLoading = Observable(false);
 
 module.exports = {
 	courses : courses,

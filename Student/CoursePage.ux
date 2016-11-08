@@ -1,62 +1,32 @@
-<Panel ux:Class="CoursePage">
+<Page ux:Class="CoursePage">
 	<JavaScript File="CoursePage.js" />
+
+	<Font File="Assets/Fonts/Roboto-Regular.ttf" ux:Global="RobotoRegular"/>
+	<Font File="Assets/Fonts/Dosis-Medium.otf" ux:Global="DosisMedium"/>
+
 	<Panel ux:Class="Course">
-		<Rectangle Color="White" CornerRadius="6" Height="100" Margin="10"> 
-			<Clicked>
-				<Toggle Target="bottomShowUp" />
-			</Clicked>
+		<Rectangle ux:Name="courseRect" Color="White" CornerRadius="6" Height="100" Margin="10"> 
 			<string ux:Property="Time" />
 			<string ux:Property="CourseName" />
 			<float4 ux:Property="CircleColor" />
+		
 			<DropShadow />
 
- 			<DockPanel Padding="10" Margin="10">
-				<Text Value="{Property Time}" Alignment="VerticalCenter" FontSize="28" Dock="Left" Color="Black">
-					<Font File="Assets/Fonts/Roboto-Regular.ttf"/>
-				</Text>
+			<StackPanel>
+	 			<DockPanel Padding="10" Margin="10,10,10,0">
+					<Text Value="{Property Time}" Alignment="VerticalCenter" FontSize="28" Dock="Left" Color="Black" Font="RobotoRegular" />
+					
+					<Text Value="{Property CourseName}" Alignment="Center" FontSize="20" Color="Black" Font="RobotoRegular" />
 				
-				<Text Value="{Property CourseName}" Alignment="Center" FontSize="20" Color="Black" >
-					 <Font File="Assets/Fonts/Roboto-Regular.ttf"/>
-				</Text>
-			
-				<Circle Color="{Property CircleColor}" Dock="Right" Width="28" Height="30">
-					<DropShadow />
-				</Circle>				
-			</DockPanel>  
+					<Circle Color="{Property CircleColor}" Dock="Right" Width="28" Height="30">
+						<DropShadow />
+					</Circle>				
+				</DockPanel>
+
+				<DetailedInfo EnterTime="{enter}" ExitTime="{exit}" Margin="10,0,10,10"/>
+			</StackPanel>
 		</Rectangle>
-
-		<!--enter time and exit time-->
-		<Panel ux:Name="bottomPanel" Width="93%" Height="90%" Opacity="0">
-			<string ux:Property="EnterTime" />
-			<string ux:Property="ExitTime" />
-			<Rectangle Layer="Background" Color="#a0ddcf" CornerRadius="5">
-				
-				<Grid Rows="20,20,1*" ColumnCount="2" Alignment="Bottom" Height="30%" Padding="20,10">
-					<StackPanel Orientation="Horizontal">
-						<Image Width="25" Height="20" File="Assets/imageedit_3_9622675366.png" />
-						<Text ux:Name="enter" Value="Enter: " Color="White" FontSize="20" >
-							<Font File="Assets/Fonts/Dosis-Medium.otf"/>
-						</Text>
-						<Text Value="{Property EnterTime}"   Color="White" FontSize="20"/>
-							
-					</StackPanel>
-					<StackPanel Orientation="Horizontal">
-						<Image Width="25" Height="20" File="Assets/imageedit_6_3927383195.png" />
-						<Text Value="Exit: " Color="White" FontSize="20" >
-							<Font File="Assets/Fonts/Dosis-Medium.otf"/>
-						</Text>
-						<Text Value="{Property ExitTime}" Color="White" FontSize="20"/>
-					</StackPanel>						
-				</Grid>
-			</Rectangle>
-			<DropShadow />
-		</Panel>
-
-		<WhileTrue ux:Name="bottomShowUp">
-			<Change bottomPanel.Opacity="1" Duration="0.3" />
-			<Move Target="bottomPanel" Y="0.6" RelativeTo="Size" Duration="0.3" />
-		</WhileTrue>
-	</Panel>
+</Panel>
 
 	<!--page view-->
 	<Panel>
@@ -65,11 +35,13 @@
 				<CogWheelReload Dock="Top" />
 				<StackPanel>
 					<Each Items="{courses}">
-						<Course ux:Name="item" Time="{time}" CourseName="{name}" CircleColor="{color}" EnterTime="{enter}" ExitTime="{exit}">
-					</Course>
+						<Course ux:Name="item" Time="{time}" CourseName="{name}" CircleColor="{color}" />
+						<LayoutAnimation>
+                            <Move RelativeTo="LayoutChange" Y="2" Duration="0.8" Easing="ElasticIn" />
+                        </LayoutAnimation>
 					</Each>
 				</StackPanel>
 			</DockPanel>
 		</ScrollView>
 	</Panel>	
-</Panel>
+</Page>
