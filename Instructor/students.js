@@ -2,27 +2,37 @@ var students = [
 	{
 		id: "2012-00000",
 		name: "Sooram Kang",
-		color: "#1e852f"			
+		color: "#1e852f",
+		absence: "3",
+		late: "2"			
 	},
 	{
 		id: "2012-00000",
 		name: "Sooram Kang",
-		color: "#1e852f"			
+		color: "#1e852f",
+		absence: "3",
+		late: "2"			
 	},
 	{
 		id: "2012-00000",
 		name: "Sooram Kang",
-		color: "#ec0707"			
+		color: "#ec0707",
+		absence: "3",
+		late: "2"						
 	},	
 	{
 		id: "2012-00000",
 		name: "Sooram Kang",
-		color: "#1e852f"			
+		color: "#1e852f",
+		absence: "3",
+		late: "2"						
 	},
 	{
 		id: "2012-00000",
 		name: "Sooram Kang",
-		color: "#1e852f"			
+		color: "#1e852f",
+		absence: "3",
+		late: "2"						
 	}				
 ];
 
