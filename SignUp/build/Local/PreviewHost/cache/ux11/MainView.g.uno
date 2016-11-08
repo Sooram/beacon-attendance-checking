@@ -54,6 +54,32 @@ public partial class MainView: Fuse.App
     internal Fuse.Triggers.WhileTrue loading;
     internal Fuse.Triggers.WhileTrue changeWidth;
     internal Fuse.Triggers.WhileTrue loadCircle;
+    global::Uno.UX.NameTable __g_nametable;
+    static string[] __g_static_nametable = new string[] {
+        "state",
+        "startPanel",
+        "signupButton",
+        "logoPanel",
+        "logo",
+        "logoMockText",
+        "moveLogo",
+        "whiteRect",
+        "whiteRectCornerRadiusAttractor",
+        "signupForm",
+        "nameTI",
+        "idTI",
+        "emailTI",
+        "submitButton",
+        "text",
+        "loadingCirclePanel",
+        "loadingCircle",
+        "rectNormalScale",
+        "loadingButton",
+        "loginButtonScaling",
+        "loading",
+        "changeWidth",
+        "loadCircle"
+    };
     static MainView()
     {
         Green = float4(0.07843138f, 1f, 0.7098039f, 1f);
@@ -120,6 +146,7 @@ public partial class MainView: Fuse.App
         idTI_Opacity_inst = new SignUp_FuseControlsTextInput_Opacity_Property(idTI, __selector5);
         emailTI = new Fuse.Controls.TextInput();
         emailTI_Opacity_inst = new SignUp_FuseControlsTextInput_Opacity_Property(emailTI, __selector5);
+        __g_nametable = new global::Uno.UX.NameTable(null, __g_static_nametable);
         changeWidth = new Fuse.Triggers.WhileTrue();
         changeWidth_Value_inst = new SignUp_FuseTriggersWhileTrue_Value_Property(changeWidth, __selector2);
         loadCircle = new Fuse.Triggers.WhileTrue();
@@ -179,19 +206,20 @@ public partial class MainView: Fuse.App
         var temp52 = new Fuse.Drawing.StaticSolidColor(float4(1f, 1f, 1f, 1f));
         var temp53 = new Fuse.Gestures.Clicked();
         var temp54 = new Fuse.Triggers.Actions.Toggle();
-        var temp55 = new Fuse.Drawing.StaticSolidColor(float4(0.9843137f, 0.5176471f, 0.4470588f, 1f));
+        var temp55 = new Fuse.Reactive.JavaScript(__g_nametable);
+        var temp56 = new Fuse.Drawing.StaticSolidColor(float4(0.9843137f, 0.5176471f, 0.4470588f, 1f));
         loadingButton = new Fuse.Controls.Panel();
-        var temp56 = new Fuse.Controls.Circle();
-        var temp57 = new Fuse.Drawing.StaticSolidColor(float4(0.9843137f, 0.5176471f, 0.4470588f, 1f));
+        var temp57 = new Fuse.Controls.Circle();
+        var temp58 = new Fuse.Drawing.StaticSolidColor(float4(0.9843137f, 0.5176471f, 0.4470588f, 1f));
         loginButtonScaling = new Fuse.Scaling();
         loading = new Fuse.Triggers.WhileTrue();
-        var temp58 = new Fuse.Animations.Change<bool>(changeWidth_Value_inst);
-        var temp59 = new Fuse.Animations.Change<bool>(loadCircle_Value_inst);
-        var temp60 = new Fuse.Animations.Change<Uno.UX.Size>(rectNormalScale_Width_inst);
-        var temp61 = new Fuse.Animations.Change<float>(text_Opacity_inst);
-        var temp62 = new Fuse.Animations.Change<float>(loadingCircle_Opacity_inst);
-        var temp63 = new Fuse.Animations.Spin();
-        var temp64 = new Fuse.Animations.Cycle<float>(loadingCircle_LengthAngleDegrees_inst);
+        var temp59 = new Fuse.Animations.Change<bool>(changeWidth_Value_inst);
+        var temp60 = new Fuse.Animations.Change<bool>(loadCircle_Value_inst);
+        var temp61 = new Fuse.Animations.Change<Uno.UX.Size>(rectNormalScale_Width_inst);
+        var temp62 = new Fuse.Animations.Change<float>(text_Opacity_inst);
+        var temp63 = new Fuse.Animations.Change<float>(loadingCircle_Opacity_inst);
+        var temp64 = new Fuse.Animations.Spin();
+        var temp65 = new Fuse.Animations.Cycle<float>(loadingCircle_LengthAngleDegrees_inst);
         temp13.Style = Uno.Platform.iOS.StatusBarStyle.Light;
         state.Transition = Fuse.Triggers.StateTransition.Exclusive;
         state.Name = __selector8;
@@ -409,53 +437,81 @@ public partial class MainView: Fuse.App
         temp51.Width = 1f;
         temp51.Brush = temp52;
         temp53.Actions.Add(temp54);
+        temp53.Nodes.Add(temp55);
         temp54.Target = loading;
+        temp55.Code = "var Syncano = require('syncano-js/dist/syncano.fuse.js');\n\t\t\t\t\t\t\tvar ApiKeys = require(\"api-keys.js\");\n\n\t\t\t\t\t\t\tvar classname = \"student\";\n\t\t\t\t\t\t\tvar connection = Syncano({\n\t\t\t\t\t\t\t\taccountKey: ApiKeys.accountKey,\n\t\t\t\t\t\t\t\tdefaults: {\n\t\t\t\t\t\t\t\t\tinstanceName: ApiKeys.instanceName,\n\t\t\t\t\t\t\t\t\tclassName: classname\n\t\t\t\t\t\t\t\t}\n\t\t\t\t\t\t\t});\n\n\t\t\t\t\t\t\tvar Student = connection.Class;\n\t\t\t\t\t\t\tvar student = {\n\t\t\t\t\t\t\t\t\"student_id\":\"11\",\n\t\t\t\t\t\t\t\t\"name\": \"eeeeea\",\n\t\t\t\t\t\t\t\t\"email\":\"hing\",\n\t\t\t\t\t\t\t\t\"device_num\":11,\n\t\t\t\t\t\t\t\t\"verification\":false\n\t\t\t\t\t\t\t\t};\n\t\t\t\t\t\t\t\tStudent.please().create(student).then(function (response, raw) {\n\t\t\t\t\t\t\t\t\tconsole.log(\"Added class \" + JSON.stringify(response));\t\n\t\t\t\t\t\t\t\t}).catch(function (reason) {\n\t\t\t\t\t\t\t\t\tconsole.log(\"forceClass create error: \" + reason);\n\t\t\t\t\t\t\t\t});";
+        temp55.LineNumber = 73;
+        temp55.FileName = "MainView.ux";
         rectNormalScale.CornerRadius = float4(30f, 30f, 30f, 30f);
         rectNormalScale.Width = new Uno.UX.Size(100f, Uno.UX.Unit.Unspecified);
         rectNormalScale.Height = new Uno.UX.Size(50f, Uno.UX.Unit.Unspecified);
         rectNormalScale.Name = __selector27;
-        rectNormalScale.Fill = temp55;
+        rectNormalScale.Fill = temp56;
         loadingButton.Width = new Uno.UX.Size(1320f, Uno.UX.Unit.Unspecified);
         loadingButton.Height = new Uno.UX.Size(1320f, Uno.UX.Unit.Unspecified);
         loadingButton.Alignment = Fuse.Elements.Alignment.Center;
         loadingButton.Opacity = 0f;
         loadingButton.Name = __selector28;
-        loadingButton.Children.Add(temp56);
+        loadingButton.Children.Add(temp57);
         loadingButton.Children.Add(loginButtonScaling);
-        temp56.Fill = temp57;
+        temp57.Fill = temp58;
         loginButtonScaling.Factor = 0.04545f;
         loginButtonScaling.Name = __selector29;
         loading.Name = __selector30;
-        loading.Animators.Add(temp58);
         loading.Animators.Add(temp59);
-        temp58.Value = true;
-        temp58.DelayBack = 0;
+        loading.Animators.Add(temp60);
         temp59.Value = true;
         temp59.DelayBack = 0;
+        temp60.Value = true;
+        temp60.DelayBack = 0;
         changeWidth.Name = __selector31;
-        changeWidth.Animators.Add(temp60);
-        temp60.Value = new Uno.UX.Size(60f, Uno.UX.Unit.Unspecified);
-        temp60.Easing = Fuse.Animations.Easing.CircularInOut;
-        temp60.Duration = 0.5;
-        temp60.DurationBack = 0;
+        changeWidth.Animators.Add(temp61);
+        temp61.Value = new Uno.UX.Size(60f, Uno.UX.Unit.Unspecified);
+        temp61.Easing = Fuse.Animations.Easing.CircularInOut;
+        temp61.Duration = 0.5;
+        temp61.DurationBack = 0;
         loadCircle.Name = __selector32;
-        loadCircle.Animators.Add(temp61);
         loadCircle.Animators.Add(temp62);
         loadCircle.Animators.Add(temp63);
         loadCircle.Animators.Add(temp64);
-        temp61.Value = 0f;
-        temp61.Duration = 0.2;
-        temp61.DurationBack = 0;
-        temp62.Value = 1f;
-        temp62.Duration = 0.3;
+        loadCircle.Animators.Add(temp65);
+        temp62.Value = 0f;
+        temp62.Duration = 0.2;
         temp62.DurationBack = 0;
-        temp62.DelayBack = 0;
-        temp62.Delay = 0.2;
-        temp63.Frequency = 2;
-        temp63.Target = loadingCircle;
-        temp64.Low = 30f;
-        temp64.High = 300f;
-        temp64.Frequency = 0.7;
+        temp63.Value = 1f;
+        temp63.Duration = 0.3;
+        temp63.DurationBack = 0;
+        temp63.DelayBack = 0;
+        temp63.Delay = 0.2;
+        temp64.Frequency = 2;
+        temp64.Target = loadingCircle;
+        temp65.Low = 30f;
+        temp65.High = 300f;
+        temp65.Frequency = 0.7;
+        __g_nametable.This = this;
+        __g_nametable.Objects.Add(state);
+        __g_nametable.Objects.Add(startPanel);
+        __g_nametable.Objects.Add(signupButton);
+        __g_nametable.Objects.Add(logoPanel);
+        __g_nametable.Objects.Add(logo);
+        __g_nametable.Objects.Add(logoMockText);
+        __g_nametable.Objects.Add(moveLogo);
+        __g_nametable.Objects.Add(whiteRect);
+        __g_nametable.Objects.Add(whiteRectCornerRadiusAttractor);
+        __g_nametable.Objects.Add(signupForm);
+        __g_nametable.Objects.Add(nameTI);
+        __g_nametable.Objects.Add(idTI);
+        __g_nametable.Objects.Add(emailTI);
+        __g_nametable.Objects.Add(submitButton);
+        __g_nametable.Objects.Add(text);
+        __g_nametable.Objects.Add(loadingCirclePanel);
+        __g_nametable.Objects.Add(loadingCircle);
+        __g_nametable.Objects.Add(rectNormalScale);
+        __g_nametable.Objects.Add(loadingButton);
+        __g_nametable.Objects.Add(loginButtonScaling);
+        __g_nametable.Objects.Add(loading);
+        __g_nametable.Objects.Add(changeWidth);
+        __g_nametable.Objects.Add(loadCircle);
         this.Children.Add(temp13);
         this.Children.Add(temp14);
         this.Children.Add(state);

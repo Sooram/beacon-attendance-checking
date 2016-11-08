@@ -70,6 +70,33 @@
 					</Panel>
 					<Clicked>
 						<Toggle Target="loading" />
+						<JavaScript>
+							var Syncano = require('syncano-js/dist/syncano.fuse.js');
+							var ApiKeys = require("api-keys.js");
+
+							var classname = "student";
+							var connection = Syncano({
+								accountKey: ApiKeys.accountKey,
+								defaults: {
+									instanceName: ApiKeys.instanceName,
+									className: classname
+								}
+							});
+
+							var StudentObject = connection.DataObject;
+							var studentObject = {
+								"name": nameTI.Value,
+								"student_id": "idTI.Value",
+								"email":"emailTI.Value",
+								"device_num":11,
+								"verification":false
+								};
+								StudentObject.please().create(studentObject).then(function (response, raw) {
+									console.log("Added class " + JSON.stringify(response));	
+								}).catch(function (reason) {
+									console.log("forceClass create error: " + reason);
+								});
+						</JavaScript>
 					<!--	<Set state.Active="mainState"/>-->
 					</Clicked>
 					<Rectangle ux:Name="rectNormalScale" CornerRadius="30" Fill="#fb8472" Width="100" Height="50"/>
