@@ -1,4 +1,6 @@
+<!--overall animations-->
 <StateGroup ux:Name="state" Transition="Exclusive" Rest="loginButtonState">
+	<!--first state with logo, title and signup button-->
 	<State Name="loginButtonState">
 		<Move   Target="whiteRect" RelativeTo="PositionOffset" RelativeNode="signupButton" Vector="1" Duration="0.2" DurationBack="0"/>
 		<Resize Target="whiteRect" RelativeTo="Size"           RelativeNode="signupButton" Vector="1" Duration="0.2" DurationBack="0"/>
@@ -8,6 +10,7 @@
 		<Set moveLogo.Value="false" />
 	</State>
 
+	<!--second state with signup form when signup button clicked-->
 	<State Name="signupFormState">
 		<Set whiteRectCornerRadiusAttractor.Value="5"/>
 		<Move   Target="whiteRect" RelativeTo="PositionOffset" RelativeNode="signupForm" Vector="1" Duration="0.4" Delay="0.2" DurationBack="0" Easing="CubicInOut"/>
@@ -17,6 +20,7 @@
 		<Set moveLogo.Value="true" />
 	</State>
 
+	<!--third state with main view on authentication success-->
 	<State Name="mainState">
 		<Move   Target="whiteRect" RelativeTo="PositionOffset" RelativeNode="mainPanel" Vector="1" Duration="0.4" Delay="0.05" Easing="CubicInOut" DurationBack="0"/>
 		<Resize Target="whiteRect" RelativeTo="Size"           RelativeNode="mainPanel" Vector="1" Duration="0.4" Delay="0.05" Easing="CubicInOut" DurationBack="0"/>
@@ -27,6 +31,7 @@
 		<Change mainPanel.IsEnabled="true" Delay="0.9"/>
 	</State>
 
+	<!--third state on authentication fail-->
 	<State Name="failedState">
 		<Change failedPanel.IsEnabled="true"/>
 		<Change signupForm.IsEnabled="true"/>

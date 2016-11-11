@@ -1,3 +1,4 @@
+<!--student's main view with daily tab(CoursePage) and history tab(HistoryPage)-->
 <ClientPanel ux:Name="mainView">
 	<!--top title space	-->
 	<Grid Color="GrayBlue" ColumnCount="5" Height="60" Dock="Top">
@@ -65,8 +66,9 @@
 
 			<Image ux:Class="PagePlaceholder" Margin="8,10,8,0" StretchMode="UniformToFill" ContentAlignment="Top"/>
 
-			<!--page animation-->
+			<!--view below tab indicator and tab animation-->
 			<Page ux:Name="page1">
+				<!--daily tab page-->
 				<CoursePage />
 
 				<WhileActive Threshold="0.5">
@@ -82,7 +84,9 @@
 				</ActivatingAnimation>
 			</Page>
 			<Page ux:Name="page2">
+				<!--history tab page-->
 				<HistoryPage />
+
 				<WhileActive Threshold="0.5">
 					<Set shrinkIndicatorWidth.Value="false" />
 					<Set indicatorColorAttractor.Value="Pink" />

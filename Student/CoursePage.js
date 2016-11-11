@@ -10,28 +10,36 @@ function loadCourses() {
 		name: "Programming Principles",
 		color: "#1e852f",
 		enter: "08:56",
-		exit: "10:52"
+		exit: "10:52",
+		absence: 23,
+		late: 2
 	},
 	{
 		time: "11:00",
 		name: "Operating System",
 		color: "#ec0707",
 		enter: "08:56",
-		exit: "10:52"
+		exit: "10:52",
+		absence: 3,
+		late: 22
 	},
 	{
 		time: "14:00",
 		name: "Database",
 		color: "#ff0",
 		enter: "08:56",
-		exit: "10:52"
+		exit: "10:52",
+		absence: 3,
+		late: 2
 	},
 	{
 		time: "15:30",
 		name: "Chinese",
 		color: "#ff0",
 		enter: "08:56",
-		exit: "10:52"
+		exit: "10:52",
+		absence: 3,
+		late: 2
 	}
 	]);
 	}, 0);
@@ -46,9 +54,9 @@ function endLoading(){
 }
 
 function reloadHandler(){
-	//TODO
+	//TODO : update data
 	isLoading.value = true;
-	setTimeout(endLoading, 3000);
+	setTimeout(endLoading, 3000);	//time should be modified
 }
 
 module.exports = {

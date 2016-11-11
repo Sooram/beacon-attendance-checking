@@ -13,6 +13,7 @@
 			<DropShadow />
 
 			<StackPanel>
+				<!--course information: time, name, student's attendance status--> 
 	 			<DockPanel Padding="10" Margin="10,10,10,0">
 					<Text Value="{Property Time}" Alignment="VerticalCenter" FontSize="28" Dock="Left" Color="Black" Font="RobotoRegular" />
 					
@@ -23,6 +24,7 @@
 					</Circle>				
 				</DockPanel>
 
+				<!--get enter time and exit time and show them-->
 				<DetailedInfo EnterTime="{enter}" ExitTime="{exit}" Margin="10,0,10,10"/>
 			</StackPanel>
 		</Rectangle>
@@ -36,9 +38,6 @@
 				<StackPanel>
 					<Each Items="{courses}">
 						<Course ux:Name="item" Time="{time}" CourseName="{name}" CircleColor="{color}" />
-						<LayoutAnimation>
-                            <Move RelativeTo="LayoutChange" Y="2" Duration="0.8" Easing="ElasticIn" />
-                        </LayoutAnimation>
 					</Each>
 				</StackPanel>
 			</DockPanel>

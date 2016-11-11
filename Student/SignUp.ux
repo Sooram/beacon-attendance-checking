@@ -1,3 +1,4 @@
+<!--starting point of application-->
 <App>
 	<Fuse.iOS.StatusBarConfig Style="Light" />
 	<Android.StatusBarConfig Color="#cccccc"/>
@@ -9,7 +10,7 @@
 		var fail = Observable();
 		
 	 	function authenticate() {
-	 		// TODO
+	 		// TODO: When authenticated, success will be true and fail will be false. When not authenticated, vice versa.
 	 		success.value = true;
 	 		fail.value = false;
 	 	}
@@ -23,6 +24,7 @@
 
 	<ux:Include File="StateAnimation.ux" />
 	<ClientPanel Color="GrayBlue">
+		<!--first page with signup button, logo picture and title-->
 		<!--signup button-->
 		<HidingPanel ux:Name="startPanel" Alignment="Bottom" Height="30%" Padding="15,0,15,15">
 			<GridLayout Rows="1*,15,15"/>
@@ -35,7 +37,6 @@
 			<Rectangle Color="BottomGray" Height="2" Width="55%"/>
 			<Rectangle Color="BottomGray" Height="2" Width="30%"/>
 		</HidingPanel>
-
 		<!--logo picture & title-->
 		<HidingPanel ux:Name="logoPanel" Alignment="Top" Height="70%" IsEnabled="true" HitTestMode="None" Layer="Background">
 			<StackPanel Alignment="Center">
@@ -64,7 +65,7 @@
 		<Rectangle ux:Name="whiteRect" Color="White" LayoutMaster="signupButton" Layer="Background" CornerRadius="25"/>
 		<Attractor ux:Name="whiteRectCornerRadiusAttractor" Target="whiteRect.CornerRadius" Value="25" Type="SmoothSnap" Unit="Points"/>
 
-		<!--signup page-->
+		<!--second page: signup page-->
 		<HidingPanel ux:Name="signupForm" Width="90%" Height="45%" Offset="0%,10%">
 			<Grid RowCount="3" Margin="30,40,30,60">
 				<TextInput ux:Name="nameTI" PlaceholderText="Name" Opacity="1" Alignment="VerticalCenter" PlaceholderColor="#888"/>
@@ -86,6 +87,7 @@
 							<Stroke Width="1" Brush="#fff" />
 						</Circle>
 					</Panel>
+					<!--when clicked, authenticate function will be triggered-->
 					<Clicked>
 						<Toggle Target="loading"/>
 						<Callback Handler="{authenticate}" Delay="2"/>
@@ -99,10 +101,12 @@
 			</Panel>
 		</HidingPanel>
 
+		<!--student's main page-->
 		<HidingPanel ux:Name="mainPanel">
 			<ux:Include File="MainView.ux"/>
 		</HidingPanel>
 
+		<!--failed page if authentication failed-->
 		<HidingPanel ux:Name="failedPanel">
 			<StackPanel Padding="0,170,0,0">
 			<Text Value="Authentication Failed" FontSize="30" Color="Pink" Alignment="Center"/>

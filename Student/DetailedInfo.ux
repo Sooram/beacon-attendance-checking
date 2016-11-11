@@ -1,7 +1,9 @@
+<!--showing student's enter time and exit time animation-->
 <Panel ux:Class="DetailedInfo">
 	<string ux:Property="EnterTime" />
 	<string ux:Property="ExitTime" />
 	<Grid ux:Name="infoButtons" Columns="40,1*,1*" Opacity="0">
+		<!--enter time-->
 		<DockPanel ux:Name="enterTime" Alignment="Center" Column="1" HitTestMode="LocalBoundsAndChildren">
 			<Image File="Assets/imageedit_3_9622675366.png" Dock="Left" Width="16" Color="#536e83"/>
 			<Text Value="Enter: " Margin="5,0" Color="#536e83" FontSize="16"/>
@@ -11,6 +13,7 @@
 				<Toggle Target="revealAnimation" />
 			</Clicked>
 		</DockPanel>
+		<!--exit time-->
 		<DockPanel ux:Name="exitTime" Alignment="Center" Margin="5,0,0,0" Column="2" HitTestMode="LocalBoundsAndChildren">
 			<Image File="Assets/imageedit_6_3927383195.png" Dock="Left"  Width="16" Color="#536e83"/>
 			<Text Value="Exit: "  Margin="5,0" Color="#536e83" FontSize="16"/>
