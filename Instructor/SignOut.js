@@ -1,3 +1,4 @@
+//sign out when yes button clicked
 function signOut() {
 	//TODO
 }

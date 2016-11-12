@@ -1,3 +1,6 @@
+//TODO
+
+//TODO: student list for each course
 var students = [		
 	{
 		id: "2012-00000",
@@ -36,7 +39,7 @@ var students = [
 	}				
 ];
 
-
+//TODO: get student list for each course
 function getStudents() {
     return new Promise(function(resolve, reject) {
         setTimeout(function() {
@@ -45,6 +48,7 @@ function getStudents() {
     });
 }
 
+//update student's attendance status
 function updateAttendance(id, name, color) {
     return new Promise(function(resolve, reject) {
         setTimeout(function() {

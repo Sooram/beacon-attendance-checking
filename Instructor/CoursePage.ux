@@ -51,7 +51,7 @@
 				<Clicked>
 					<Toggle Target="signOutAnimation"/>					 
 				</Clicked>
-			<Text ux:Name="titleText" Value="Here!" TextColor="White" FontSize="25" Column="2" Alignment="Center"/>
+			<Text ux:Name="titleText" Value="Here!" TextColor="GrayPurple" FontSize="25" Column="2" Alignment="Center"/>
 		</Grid>
 
 		<!--sign out page-->
@@ -63,22 +63,13 @@
 		<ScrollView>
 			<StackPanel>
 				<CogWheelReload />
-
 				<StackPanel Padding="0,15">
 					<Each Items="{courses}">
 						<Course ux:Name="item" Time="{time}" CourseName="{name}" Total="{total}" Absence="{absence}" Clicked="{goToMain}" />	
 					</Each>
 				</StackPanel>
-
 			</StackPanel>
 		</ScrollView>	
 
-		<!--page animation-->	
-		<Attractor ux:Name="bgColorAttractor" Target="bgColor.Color" Value="#eae2df" />
-		<Attractor ux:Name="titleTextAttractor" Target="titleText.TextColor" Value="GrayPurple" />
-		<WhileActive Threshold="0.5">
-			<Set bgColorAttractor.Value="#eae2df" />
-			<Set titleTextAttractor.Value="GrayPurple" />
-		</WhileActive>
 	</ClientPanel>
 </Page>

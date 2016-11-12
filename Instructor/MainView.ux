@@ -50,6 +50,7 @@
 		</Grid>
 	</Panel>
 
+	<!--two tab pages & animation-->
 	<PageControl ux:Name="nav">
 		<NavigationMotion GotoEasing="BackOut" />
 		<Attractor ux:Name="indicatorColorAttractor" Target="indicator.Color" Value="SkyBlue" />
@@ -61,9 +62,12 @@
 			<Change indicator.Width="90" Duration="0.25"/>
 		</WhileTrue>
 
-		<!--page animation-->
+		
+		<!--daily page with student list-->
 		<Page ux:Name="daily">
-			<StudentListPage />		
+			<StudentListPage />	
+
+			<!--page animation-->
 			<WhileActive Threshold="0.5">
 				<Set shrinkIndicatorWidth.Value="false" />
 				<Set indicatorColorAttractor.Value="SkyBlue" />
@@ -77,8 +81,11 @@
 			</ActivatingAnimation>
 		</Page>
 
+		<!--history page-->
 		<Page ux:Name="history">
 			<HistoryPage />
+
+			<!--page animation-->
 			<WhileActive Threshold="0.5">
 				<Set shrinkIndicatorWidth.Value="false" />
 				<Set indicatorColorAttractor.Value="Pink" />

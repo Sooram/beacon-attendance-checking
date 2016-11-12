@@ -1,6 +1,7 @@
+//TODO
 var Observable = require('FuseJS/Observable');
 
-// course list (this can be replaced by a file)
+// course list
 courses = Observable();
 
 // get an array of course info and update
@@ -27,21 +28,26 @@ loadCourses();
 
 var students = require("students");
 
+//go to MainView with different student list
+//TODO
 function goToMain(arg) {
    	var student = arg.data;
  	router.push("mainView", student);
 }
 
+var isLoading = Observable(false);	
+
+//finish updating
 function endLoading(){
 	isLoading.value = false;
 }
 
+//update data
 function reloadHandler(){
+	//TODO 
 	isLoading.value = true;
 	setTimeout(endLoading, 3000);
-}
-
-var isLoading = Observable(false);		
+}	
 
 module.exports = {
 	courses : courses,

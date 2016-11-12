@@ -20,8 +20,8 @@
 	 		success: success,
 	 		fail: fail
 	 	};
-						
-		var Syncano = require('syncano-js/dist/syncano.fuse.js');
+
+	 	var Syncano = require('syncano-js/dist/syncano.fuse.js');
 		var ApiKeys = require("api-keys.js");
 
 		var classname = "student";
@@ -47,7 +47,7 @@
 				console.log("forceClass create error: " + reason);
 			});
 	</JavaScript>
-	
+
 	<ux:Include File="StateAnimation.ux" />
 	<ClientPanel Color="GrayBlue">
 		<!--first page with signup button, logo picture and title-->
@@ -95,7 +95,7 @@
 		<HidingPanel ux:Name="signupForm" Width="90%" Height="45%" Offset="0%,10%">
 			<Grid RowCount="3" Margin="30,40,30,60">
 				<TextInput ux:Name="nameTI" PlaceholderText="Name" Opacity="1" Alignment="VerticalCenter" PlaceholderColor="#888"/>
-				<TextInput ux:Name="idTI"    PlaceholderText="Student Number" Opacity="1" Alignment="VerticalCenter" PlaceholderColor="#888"/>
+				<TextInput ux:Name="idTI"    PlaceholderText="Instructor Number" Opacity="1" Alignment="VerticalCenter" PlaceholderColor="#888"/>
 				<TextInput ux:Name="emailTI" PlaceholderText="Email" Opacity="1" Alignment="VerticalCenter" PlaceholderColor="#888"/>
 			</Grid>
 			<WhileEnabled>
@@ -129,7 +129,11 @@
 
 		<!--student's main page-->
 		<HidingPanel ux:Name="mainPanel">
-			<ux:Include File="MainView.ux"/>
+			<Router ux:Name="router"/>
+			<Navigator DefaultTemplate="home">
+				<CoursePage ux:Template="home" router="router"/>
+				<MainView ux:Template="mainView" router="router" />
+			</Navigator>
 		</HidingPanel>
 
 		<!--failed page if authentication failed-->
