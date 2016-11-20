@@ -9,17 +9,10 @@
 		var success = Observable();
 		var fail = Observable();
 		
-	 	function authenticate() {
-	 		// TODO: When authenticated, success will be true and fail will be false. When not authenticated, vice versa.
-	 		success.value = true;
-	 		fail.value = false;
-	 	}
-	 
-	 	module.exports = {
-	 		authenticate: authenticate,
-	 		success: success,
-	 		fail: fail
-	 	};
+		var name = Observable("");
+		var student_id = Observable("");
+		var email = Observable("");
+
 						
 		var Syncano = require('syncano-js/dist/syncano.fuse.js');
 		var ApiKeys = require("api-keys.js");
@@ -34,10 +27,15 @@
 		});
 
 		var StudentObject = connection.DataObject;
-		var studentObject = {
-			"name": nameTI.Value,
-			"student_id": "idTI.Value",
-			"email":"emailTI.Value",
+		
+
+	 	function authenticate() {
+	 		// TODO: When authenticated, success will be true and fail will be false. When not authenticated, vice versa.
+	 		
+	 		var studentObject = {
+			"name": name.value,
+			"student_id": parseInt(student_id.value),
+			"email": email.value,
 			"device_num":11,
 			"verification":false
 			};
@@ -46,6 +44,18 @@
 			}).catch(function (reason) {
 				console.log("forceClass create error: " + reason);
 			});
+	 		success.value = true;
+	 		fail.value = false;
+	 	}
+	 
+	 	module.exports = {
+	 		authenticate: authenticate,
+	 		success: success,
+	 		fail: fail,
+	 		name: name,
+	 		student_id: student_id,
+	 		email: email
+	 	};
 	</JavaScript>
 	
 	<ux:Include File="StateAnimation.ux" />
@@ -94,9 +104,9 @@
 		<!--second page: signup page-->
 		<HidingPanel ux:Name="signupForm" Width="90%" Height="45%" Offset="0%,10%">
 			<Grid RowCount="3" Margin="30,40,30,60">
-				<TextInput ux:Name="nameTI" PlaceholderText="Name" Opacity="1" Alignment="VerticalCenter" PlaceholderColor="#888"/>
-				<TextInput ux:Name="idTI"    PlaceholderText="Student Number" Opacity="1" Alignment="VerticalCenter" PlaceholderColor="#888"/>
-				<TextInput ux:Name="emailTI" PlaceholderText="Email" Opacity="1" Alignment="VerticalCenter" PlaceholderColor="#888"/>
+				<TextInput ux:Name="nameTI" PlaceholderText="Name" Opacity="1" Alignment="VerticalCenter" PlaceholderColor="#888" Value="{name}"/>
+				<TextInput ux:Name="idTI"    PlaceholderText="Student Number" Opacity="1" Alignment="VerticalCenter" PlaceholderColor="#888" Value="{student_id}"/>
+				<TextInput ux:Name="emailTI" PlaceholderText="Email" Opacity="1" Alignment="VerticalCenter" PlaceholderColor="#888" Value="{email}"/>
 			</Grid>
 			<WhileEnabled>
 				<Change nameTI.Opacity="1" Duration="0.4" />

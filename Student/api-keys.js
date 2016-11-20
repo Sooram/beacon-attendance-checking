@@ -1,4 +1,4 @@
 module.exports = {
-    accountKey: "513335512a98bb605125aa4d0a6712c142fa198c",
-    instanceName: "projectw"
+    accountKey: "68d148aed39e200cfe6340577b6378b9a8eb58da",
+    instanceName: "project-w"
 };

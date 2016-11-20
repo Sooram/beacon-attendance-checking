@@ -1,5 +1,5 @@
 [Uno.Compiler.UxGenerated]
-public partial class CoursePage: Fuse.Controls.Panel
+public partial class CoursePage: Fuse.Controls.Page
 {
     [Uno.Compiler.UxGenerated]
     public partial class Template: Uno.UX.Template
@@ -38,11 +38,17 @@ public partial class CoursePage: Fuse.Controls.Panel
         static global::Uno.UX.Selector __selector3 = "item";
     }
     global::Uno.UX.Property<object> temp_Items_inst;
+    [global::Uno.UX.UXGlobalResource("RobotoRegular")] public static readonly Fuse.Font RobotoRegular;
+    [global::Uno.UX.UXGlobalResource("DosisMedium")] public static readonly Fuse.Font DosisMedium;
     global::Uno.UX.NameTable __g_nametable;
     static string[] __g_static_nametable = new string[] {
     };
     static CoursePage()
     {
+        RobotoRegular = new Fuse.Font(new global::Uno.UX.BundleFileSource(import global::Uno.IO.BundleFile("../../../Assets/Fonts/Roboto-Regular.ttf")));
+        DosisMedium = new Fuse.Font(new global::Uno.UX.BundleFileSource(import global::Uno.IO.BundleFile("../../../Assets/Fonts/Dosis-Medium.otf")));
+        global::Uno.UX.Resource.SetGlobalKey(RobotoRegular, "RobotoRegular");
+        global::Uno.UX.Resource.SetGlobalKey(DosisMedium, "DosisMedium");
     }
     [global::Uno.UX.UXConstructor]
     public CoursePage()
@@ -57,17 +63,23 @@ public partial class CoursePage: Fuse.Controls.Panel
         var temp1 = new Fuse.Reactive.JavaScript(__g_nametable);
         var temp2 = new Fuse.Controls.Panel();
         var temp3 = new Fuse.Controls.ScrollView();
-        var temp4 = new Fuse.Controls.StackPanel();
+        var temp4 = new Fuse.Controls.DockPanel();
+        var temp5 = new CogWheelReload();
+        var temp6 = new Fuse.Controls.StackPanel();
         var item = new Template(this, this);
-        var temp5 = new Fuse.Reactive.DataBinding<object>(temp_Items_inst, "courses");
-        temp1.Code = "var Observable = require('FuseJS/Observable');\n\t\tcourses = Observable();\n\n\t\t// get an array of course info and update\n\t\tfunction loadCourses() {\n\t\t\tsetTimeout(function() {\n\t\t\t\tcourses.replaceAll([\n\t\t\t{\n\t\t\t\ttime: \"09:00\",\n\t\t\t\tname: \"Programming Principles\",\n\t\t\t\tcolor: \"#1e852f\"\n\t\t\t},\n\t\t\t{\n\t\t\t\ttime: \"11:00\",\n\t\t\t\tname: \"Operating System\",\n\t\t\t\tcolor: \"#ec0707\"\n\t\t\t},\n\t\t\t{\n\t\t\t\ttime: \"15:30\",\n\t\t\t\tname: \"Database\",\n\t\t\t\tcolor: \"#ff0\"\n\t\t\t},\n\t\t\t{\n\t\t\t\ttime: \"15:30\",\n\t\t\t\tname: \"Database\",\n\t\t\t\tcolor: \"#ff0\"\n\t\t\t}\n\t\t\t]);\n\t\t\t}, 0);\n\t\t}\n\n\t\tloadCourses();\n\n\t\tmodule.exports = {\n\t\t\tcourses : courses,\n\t\t};";
-        temp1.LineNumber = 49;
+        var temp7 = new Fuse.Reactive.DataBinding<object>(temp_Items_inst, "courses");
+        temp1.LineNumber = 2;
         temp1.FileName = "CoursePage.ux";
+        temp1.File = new global::Uno.UX.BundleFileSource(import global::Uno.IO.BundleFile("../../../CoursePage.js"));
         temp2.Children.Add(temp3);
+        temp3.SnapMinTransform = false;
         temp3.Children.Add(temp4);
-        temp4.Children.Add(temp);
+        temp4.Children.Add(temp5);
+        temp4.Children.Add(temp6);
+        global::Fuse.Controls.DockPanel.SetDock(temp5, Fuse.Layouts.Dock.Top);
+        temp6.Children.Add(temp);
         temp.Templates.Add(item);
-        temp.Bindings.Add(temp5);
+        temp.Bindings.Add(temp7);
         __g_nametable.This = this;
         this.Children.Add(temp1);
         this.Children.Add(temp2);
