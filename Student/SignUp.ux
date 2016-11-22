@@ -27,31 +27,58 @@
 		});
 
 		var StudentObject = connection.DataObject;
-		
+		var constraintErrMsg = "";
+		// how to handle Fuse.Scripting.V8.Array?
+		StudentObject.please().then(function(objects){
+			console.log('objects', objects);
+		});
+		function constraint() {
+			success.value = false;
+			fail.value = true;
+			if (name.value == ""){
+				constraintErrMsg = "Please enter your name.";
+				return false;
+			} else if (!(/20\d{2}-\d{5}$/.test(student_id.value))){
+				constraintErrMsg = "Please check your student id";
+				return false;
+			} /*else if (StudentObject.please().list(list).filter({"student_id":{"_contains":student_id.value}}).length != 0){
+				constraintErrMsg = "This student id is already registered";
+				return false;
+			} else if (StudentObject.please().list(list).filter({"email":{"_contains":email.value}}).length != 0){
+				constraintErrMsg = "This email is already registered";
+				return false;
+			} */else {
+				success.value = true;
+				fail.value = false;
+				return true;
+			}
+		}
 
 	 	function authenticate() {
 	 		// TODO: When authenticated, success will be true and fail will be false. When not authenticated, vice versa.
-	 		
-	 		var studentObject = {
-			"name": name.value,
-			"student_id": parseInt(student_id.value),
-			"email": email.value,
-			"device_num":11,
-			"verification":false
+
+			var studentObject = {
+				"name": name.value,
+				"student_id": student_id.value,
+				"email": email.value,
+				"device_num":11,
+				"verification":false
+				};
+
+	 		if (constraint()){
+				StudentObject.please().create(studentObject).then(function (response, raw) {
+					console.log("Added class " + JSON.stringify(response));	
+				}).catch(function (reason) {
+					console.log("forceClass create error: " + reason);
+				});
 			};
-			StudentObject.please().create(studentObject).then(function (response, raw) {
-				console.log("Added class " + JSON.stringify(response));	
-			}).catch(function (reason) {
-				console.log("forceClass create error: " + reason);
-			});
-	 		success.value = true;
-	 		fail.value = false;
 	 	}
 	 
 	 	module.exports = {
 	 		authenticate: authenticate,
 	 		success: success,
 	 		fail: fail,
+	 		constraintErrMsg: constraintErrMsg,
 	 		name: name,
 	 		student_id: student_id,
 	 		email: email
@@ -105,7 +132,7 @@
 		<HidingPanel ux:Name="signupForm" Width="90%" Height="45%" Offset="0%,10%">
 			<Grid RowCount="3" Margin="30,40,30,60">
 				<TextInput ux:Name="nameTI" PlaceholderText="Name" Opacity="1" Alignment="VerticalCenter" PlaceholderColor="#888" Value="{name}"/>
-				<TextInput ux:Name="idTI"    PlaceholderText="Student Number" Opacity="1" Alignment="VerticalCenter" PlaceholderColor="#888" Value="{student_id}"/>
+				<TextInput ux:Name="idTI"    PlaceholderText="Student Number(format: 20XX-XXXXX)" Opacity="1" Alignment="VerticalCenter" PlaceholderColor="#888" Value="{student_id}"/>
 				<TextInput ux:Name="emailTI" PlaceholderText="Email" Opacity="1" Alignment="VerticalCenter" PlaceholderColor="#888" Value="{email}"/>
 			</Grid>
 			<WhileEnabled>
@@ -145,7 +172,7 @@
 		<!--failed page if authentication failed-->
 		<HidingPanel ux:Name="failedPanel">
 			<StackPanel Padding="0,170,0,0">
-			<Text Value="Authentication Failed" FontSize="30" Color="Pink" Alignment="Center"/>
+			<Text Value="{constraintErrMsg}" FontSize="30" Color="Pink" Alignment="Center"/>
 			<Text Value="Try again" FontSize="25" Color="Pink" Alignment="Center"/>
 			</StackPanel>
 		</HidingPanel>
