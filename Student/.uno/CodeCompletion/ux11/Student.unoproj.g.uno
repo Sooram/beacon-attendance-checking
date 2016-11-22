@@ -79,6 +79,15 @@ sealed class Student_Course_CircleColor_Property: Uno.UX.Property<float4>
     public override void Set(float4 v, global::Uno.UX.IPropertyListener origin) { _obj.SetCircleColor(v, origin); }
     public override bool SupportsOriginSetter { get { return true; } }
 }
+sealed class Student_FuseControlsTextInput_Value_Property: Uno.UX.Property<string>
+{
+    [Uno.WeakReference] readonly Fuse.Controls.TextInput _obj;
+    public Student_FuseControlsTextInput_Value_Property(Fuse.Controls.TextInput obj, global::Uno.UX.Selector name) : base(name) { _obj = obj; }
+    public override global::Uno.UX.PropertyObject Object { get { return _obj; } }
+    public override string Get() { return _obj.Value; }
+    public override void Set(string v, global::Uno.UX.IPropertyListener origin) { _obj.SetValue(v, origin); }
+    public override bool SupportsOriginSetter { get { return true; } }
+}
 sealed class Student_FuseTriggersWhileTrue_Value_Property: Uno.UX.Property<bool>
 {
     [Uno.WeakReference] readonly Fuse.Triggers.WhileTrue _obj;
