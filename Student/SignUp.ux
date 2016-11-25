@@ -40,8 +40,8 @@
 				"verification":false
 				};
 
-			success.value = false;
-			fail.value = true;
+			success.value = true;
+			fail.value = false;
 
 			// Checking constraint
 			if (name.value == ""){
@@ -100,7 +100,6 @@
 	 	};
 	</JavaScript>
 	
-	<ux:Include File="StateAnimation.ux" />
 	<ClientPanel Color="GrayBlue">
 		<!--first page with signup button, logo picture and title-->
 		<!--signup button-->
@@ -180,16 +179,58 @@
 		</HidingPanel>
 
 		<!--student's main page-->
-		<HidingPanel ux:Name="mainPanel">
-			<ux:Include File="MainView.ux"/>
-		</HidingPanel>
+		<!-- <HidingPanel ux:Name="topPanel"> -->
+			<!--top title space	-->
+			<!-- <GridLayout Rows="60,1*"/>
+			<WhileEnabled>
+				<Change navBarTrans.Y="0" Duration="0.4"/>
+			</WhileEnabled>
+			<Grid ColumnCount="5" Height="60" Dock="Top" Color="GrayBlue">
+				<Translation ux:Name="navBarTrans" RelativeTo="Size" Y="-0.2" />
+				<Panel HitTestMode="LocalBoundsAndChildren">
+					<ux:Include File="MenuButton.ux" />
+					<Clicked>
+						<Toggle Target="signOutAnimation"/>	
+						<Change mainPanel.IsEnabled="false"/>				 
+					</Clicked>									
+				</Panel>
+				<Text ux:Name="titleText" Value="Here!" Color="White" FontSize="25" Alignment="Center" Column="2"/>				
+			</Grid> -->
+			<HidingPanel ux:Name="mainPanel">
+				<ux:Include File="MainView.ux"/>
+			</HidingPanel>
+		<!-- </HidingPanel> -->
+
+		<!--sign out page-->
+	<!-- 	<HidingPanel ux:Name="SignOutPage">
+			<ux:Include File="SignoutPage.ux" />
+		</HidingPanel> -->
+
+		<!--instructor's main page-->
+		<!-- <HidingPanel ux:Name="mainPanel">
+			<Router ux:Name="router"/>
+			<Navigator DefaultTemplate="home">
+				<CoursePage ux:Template="home" router="router"/>
+				<MainView ux:Template="mainView" router="router" />
+			</Navigator>
+		</HidingPanel> -->
 
 		<!--failed page if authentication failed-->
-		<HidingPanel ux:Name="failedPanel">
-			<StackPanel Padding="0,170,0,0">
-			<Text Value="{constraintErrMsg}" FontSize="30" Color="Pink" Alignment="Center"/>
-			<Text Value="Try again" FontSize="25" Color="Pink" Alignment="Center"/>
-			</StackPanel>
+		<HidingPanel ux:Name="failedPanel" HitTestMode="None" Layer="Background">
+			<HidingPanel ux:Name="failedMsg" IsEnabled="true">
+				<StackPanel Padding="0,170,0,0">
+					<Text Value="{constraintErrMsg}" FontSize="25" Color="Pink" Alignment="Center"/>
+					<Text Value="Try again" FontSize="25" Color="Pink" Alignment="Center"/>
+				</StackPanel>
+			</HidingPanel>
+
+			<WhileEnabled>
+				<Change loading.Value="false" />
+			</WhileEnabled>
+
+			<WhileKeyboardVisible>
+				<Change failedMsg.IsEnabled="false" />
+			</WhileKeyboardVisible>
 		</HidingPanel>
 
 		<!--on authentication success goto main, else stay at signupFormState-->
@@ -201,7 +242,7 @@
 		</WhileTrue>
 
 		<!--loading animation-->
-		<WhileTrue ux:Name="loading">
+		<WhileTrue ux:Name="loading" Value="{success}">
 			<Change changeWidth.Value="true" DelayBack="0"/>
 			<Change loadCircle.Value="true" DelayBack="0"/>
 		</WhileTrue>
@@ -214,6 +255,8 @@
 			<Spin Target="loadingCircle" Frequency="2"/>
 			<Cycle Target="loadingCircle.LengthAngleDegrees" Low="30" High="300" Frequency="0.7" />
 		</WhileTrue>
+
+		<ux:Include File="StateAnimation.ux" />
 	
 	</ClientPanel>
 </App>
