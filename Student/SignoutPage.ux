@@ -1,5 +1,16 @@
 <!--Shown when the menu button clicked. Ask whether to sign out.-->
-<Panel ux:Name="SignoutPage" >     
+<Panel ux:Name="SignoutPage" >  
+    <JavaScript File="SignUp.js" />   
+    <JavaScript>
+    var storage = require('FuseJS/Storage');
+
+    function signOut() {
+    //TODO : delete data from db
+        storage.deleteSync("filedb.txt"); //delete token file
+        console.log("?");
+    }
+    module.exports = { signOut: signOut };
+    </JavaScript>
     <Rectangle ux:Name="signOutBackground" Layer="Background" />
     <StackPanel Y="10%">
         <Text ux:Name="signOutText" Value="Want to sign out?" Alignment="Center" TextColor="White" FontSize="30" Offset="0,-10" Opacity="0"/>
@@ -22,10 +33,12 @@
     </Panel>
     <!--yes button-->
     <!--when clicked, triggers signOut function-->
-    <Panel ux:Name="YesButton" Alignment="Bottom" Width="60" Height="60" Opacity="0" Clicked="{signOut}">    
+    <Panel ux:Name="YesButton" Alignment="Bottom" Width="60" Height="60" Opacity="0" >    
         <EllipseText Value="YES" TextColor="Gray1"/>
         <Clicked>
             <Scale Factor="0.8" Duration=".1" Easing="CubicInOut" />
+            <Callback Handler="{signOut}" Delay="2"/>
+            <Set state.Active="loginButtonState" />
         </Clicked>            
         <Circle Color="White1">
             <DropShadow/>             
