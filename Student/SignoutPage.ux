@@ -7,7 +7,7 @@
     function signOut() {
     //TODO : delete data from db
         storage.deleteSync("filedb.txt"); //delete token file
-        console.log("?");
+       // console.log("?");
     }
     module.exports = { signOut: signOut };
     </JavaScript>

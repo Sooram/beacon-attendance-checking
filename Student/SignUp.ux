@@ -3,7 +3,6 @@
 	<Fuse.iOS.StatusBarConfig Style="Light" />
 	<Android.StatusBarConfig Color="#cccccc"/>
 	<JavaScript File="SignUp.js" />
-	
 	<ClientPanel Color="GrayBlue">
 		<!--first page with signup button, logo picture and title-->
 		<!--signup button-->
@@ -138,7 +137,7 @@
 		</HidingPanel>
 
 		<!--on authentication success goto main, else stay at signupFormState-->
-		<WhileTrue ux:Name="main" Value="{success}">
+		<WhileTrue ux:Name="main" Value="{loggedin}">
 			<Set state.Active="mainState"/>
 		</WhileTrue>
 		<WhileTrue ux:Name="signup" Value="{fail}">

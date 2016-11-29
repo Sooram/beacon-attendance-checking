@@ -79,6 +79,7 @@ var account = Syncano({accountKey : "0f4159a2a651cdc15b9353a3f3f6069274e92d94"})
                 }).catch(function (reason) {
                   console.log("forceClass create error: " + reason);
                 }).then(function(){
+                  loggedin.value = true;
                   name.value = "";
                   student_id.value = "";
                   email.value = "";
@@ -89,7 +90,20 @@ var account = Syncano({accountKey : "0f4159a2a651cdc15b9353a3f3f6069274e92d94"})
           })
       }
     }
-   
+    var loggedin = Observable();
+
+    //check if user has been logged in
+    function isloggedin(){
+      if (storage.readSync("filedb.txt").length){
+        loggedin.value = true;
+        return true;
+      } else {
+        loggedin.value = false;
+        return false;
+      }
+    }
+    isloggedin();
+
     module.exports = {
       authenticate: authenticate,
       success: success,
@@ -98,6 +112,8 @@ var account = Syncano({accountKey : "0f4159a2a651cdc15b9353a3f3f6069274e92d94"})
       name: name,
       student_id: student_id,
       email: email,
+      isloggedin: isloggedin,
+      loggedin: loggedin
     };
     /*
 function genUniqueName() {
