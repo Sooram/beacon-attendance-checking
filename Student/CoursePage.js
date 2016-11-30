@@ -21,22 +21,24 @@ function getStudentId(){
 	var json = JSON.parse(userData);
 	return json["student_id"];
 }
-
+//TODO: integrating with attendance info
 function getTodaysCourse(objs){
+	day = (new Date()).toString().substring(0,3); //get today's day
 	courses = Observable({name: "No class today"});
 	arr = [];
-	console.log(objs.length);
 	if (objs.length) {
 		objs.forEach(function(course) {
-			arr.push({
-				time: course.start_time,
-				name: course.course_name,
-				color: "#1e852f",
-				enter: "NA",
-				exit: "NA",
-				absence: course.num_absent,
-				late: "NA"
-			})
+			if(course.day.includes(day)){
+				arr.push({ //if the student has this class today
+					time: course.start_time,
+					name: course.course_name,
+					color: "#1e852f",
+					enter: "NA",
+					exit: "NA",
+					absence: course.num_absent,
+					late: "NA"
+				})
+			}
 		})
 		courses.replaceAll(arr);
 	}
