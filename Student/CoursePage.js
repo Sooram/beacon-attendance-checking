@@ -30,7 +30,7 @@ function getTodaysCourse(){
 		var arr = [];
 		if (res.length) {
 			res.forEach(function(course) {
-				if(1/*course.day.includes(day)*/){
+				if(course.day.includes(day)){
 					arr.push({ //if the student has this class today
 							time: course.start_time,
 						name: course.course_name,
