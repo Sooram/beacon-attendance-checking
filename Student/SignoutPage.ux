@@ -1,15 +1,30 @@
 <!--Shown when the menu button clicked. Ask whether to sign out.-->
 <Panel ux:Name="SignoutPage" >  
-    <JavaScript File="SignUp.js" />   
     <JavaScript>
-    var storage = require('FuseJS/Storage');
-
-    function signOut() {
-    //TODO : delete data from db
-        storage.deleteSync("filedb.txt"); //delete token file
-       // console.log("?");
-    }
-    module.exports = { signOut: signOut };
+        var Observable = require('FuseJS/Observable');
+        var Syncano = require('syncano-js/dist/syncano.fuse.js');
+        var ApiKeys = require("api-keys.js");
+        var classname = "student"
+        var connection = Syncano({
+            accountKey: ApiKeys.accountKey,
+            defaults: {
+                instanceName: ApiKeys.instanceName,
+                className: classname
+            }
+        });
+        var StudentObject = connection.DataObject;
+        
+        var storage = require('FuseJS/Storage');
+    
+        function signOut() {
+            userData = storage.readSync("filedb.txt");
+            json = JSON.parse(userData);
+            StudentObject.please().delete({id: json["id"]}).then(function(){}).catch(function(reason){
+                console.log("student object delete error: " + reason);
+            }); //delete data from db
+            storage.deleteSync("filedb.txt"); //delete token file
+        }
+        module.exports = { signOut: signOut };
     </JavaScript>
     <Rectangle ux:Name="signOutBackground" Layer="Background" />
     <StackPanel Y="10%">
