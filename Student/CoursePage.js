@@ -1,51 +1,59 @@
 var Observable = require('FuseJS/Observable');
-courses = Observable();
+//Syncano course class
+var Syncano = require('syncano-js/dist/syncano.fuse.js');
+var ApiKeys = require("api-keys.js");
+var classname = "course";
+var connection = Syncano({
+    accountKey: ApiKeys.accountKey,
+    defaults: {
+    	instanceName: ApiKeys.instanceName,
+    	className: classname
+    }
+});
+var CourseObject = connection.DataObject;
 
-// get an array of course info and load
-function loadCourses() {
-	setTimeout(function() {
-		courses.replaceAll([
-	{
-		time: "09:00",
-		name: "Programming Principles",
-		color: "#1e852f",
-		enter: "08:56",
-		exit: "10:52",
-		absence: 23,
-		late: 2
-	},
-	{
-		time: "11:00",
-		name: "Operating System",
-		color: "#ec0707",
-		enter: "08:56",
-		exit: "10:52",
-		absence: 3,
-		late: 22
-	},
-	{
-		time: "14:00",
-		name: "Database",
-		color: "#ff0",
-		enter: "08:56",
-		exit: "10:52",
-		absence: 3,
-		late: 2
-	},
-	{
-		time: "15:30",
-		name: "Chinese",
-		color: "#ff0",
-		enter: "08:56",
-		exit: "10:52",
-		absence: 3,
-		late: 2
-	}
-	]);
-	}, 0);
+var studentId = Observable("");
+
+function getStudentId(){
+	var storage = require('FuseJS/Storage');
+	var userData = storage.readSync("filedb.txt");
+	var json = JSON.parse(userData);
+	return json["student_id"];
 }
 
-loadCourses();
+//TODO: integrating with attendance info
+function getTodaysCourse(){
+	day = (new Date()).toString().substring(0,3); //get today's day
+	list = Observable({name: "No class today"});
+
+	CourseObject.please().filter({"students_list":{"_contains":[getStudentId()]}}).then(function(res, raw){
+		var arr = [];
+		if (res.length) {
+			res.forEach(function(course) {
+				if(course.day.includes(day)){
+					arr.push({ //if the student has this class today
+							time: course.start_time,
+						name: course.course_name,
+						color: "#1e852f",
+						enter: "NA",
+						exit: "NA",
+						absence: course.num_absent,
+						late: "NA"
+					});
+				}
+			});
+			//list.replaceAll(arr);
+		}})
+		.catch(function (reason) {
+    		console.log("data load error: " + reason);
+    		arr = [{name: "Couldn't load courses"}];
+  		});
+}
+getTodaysCourse();
+var courses = Observable();
+courses.replaceAll(arr);
+
+// color : green "#1e852f", "#ec0707", "#ff0"
 
 var isLoading = Observable(false);
 
@@ -58,7 +66,6 @@ function reloadHandler(){
 	isLoading.value = true;
 	setTimeout(endLoading, 3000);	//time should be modified
 }
-
 module.exports = {
 	courses : courses,
 	isLoading: isLoading,

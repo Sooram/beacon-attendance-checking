@@ -2,104 +2,7 @@
 <App>
 	<Fuse.iOS.StatusBarConfig Style="Light" />
 	<Android.StatusBarConfig Color="#cccccc"/>
-
-	<JavaScript>
-		var Observable = require("FuseJS/Observable");
-		
-		var success = Observable();
-		var fail = Observable();
-		
-		var name = Observable("");
-		var student_id = Observable("");
-		var email = Observable("");
-
-						
-		var Syncano = require('syncano-js/dist/syncano.fuse.js');
-		var ApiKeys = require("api-keys.js");
-
-		var classname = "student";
-		var connection = Syncano({
-			accountKey: ApiKeys.accountKey,
-			defaults: {
-				instanceName: ApiKeys.instanceName,
-				className: classname
-			}
-		});
-
-		var StudentObject = connection.DataObject;
-		var constraintErrMsg = Observable("");
-
-	 	function authenticate() {
-	 		// When authenticated, success will be true and fail will be false. When not authenticated, vice versa.
-
-			var studentObject = {
-				"name": name.value,
-				"student_id": student_id.value,
-				"email": email.value,
-				"device_num":11,
-				"verification":false
-				};
-
-			success.value = true;
-			fail.value = false;
-
-			// Checking constraint
-			if (name.value == ""){
-				constraintErrMsg.value = "Please enter your name";
-				return false;
-			} else if (!(/20\d{2}-\d{5}$/.test(student_id.value))){
-				constraintErrMsg.value = "Please check your student id format";
-				return false;
-			} else if (!(/.+@snu[.]ac[.]kr$/.test(email.value))){
-				constraintErrMsg.value = "Please check your SNU Email";
-				return false;
-			} else {
-				// student id, email, device number should be unique
-				doesExist = false;
-				StudentObject.please().filter({"student_id":{"_eq":student_id.value}}).then(function(response){
-					if (response.length){
-						constraintErrMsg.value = "This student id is already registered";
-						doesExist = true;
-						return;
-					}}).then(function(){
-						StudentObject.please().filter({"email":{"_eq":email.value}}).then(function(response){
-							if (response.length){
-								constraintErrMsg.value = "This email is already registered";
-								doesExist = true;
-								return;
-							}
-						});
-					}).then(function(){
-						if (doesExist){
-							return;
-						} else {
-							// If given data is unique and well-formed, put it in db
-							success.value = true;
-							fail.value = false;
-							StudentObject.please().create(studentObject).then(function (response, raw) {
-								console.log("Added class " + JSON.stringify(response));	
-								}).catch(function (reason) {
-									console.log("forceClass create error: " + reason);
-								});
-							return;
-						}
-						//TODO: Fix Bug) It shows "Try Again!"" even when it's succeeded
-						//TODO: have to get device numbers
-					})
-			}
-	 	}
-	 
-	 	module.exports = {
-	 		authenticate: authenticate,
-	 		success: success,
-	 		fail: fail,
-	 		constraintErrMsg: constraintErrMsg,
-	 		name: name,
-	 		student_id: student_id,
-	 		email: email
-	 	};
-	</JavaScript>
-	
+	<JavaScript File="SignUp.js" />
 	<ClientPanel Color="GrayBlue">
 		<!--first page with signup button, logo picture and title-->
 		<!--signup button-->
@@ -234,7 +137,7 @@
 		</HidingPanel>
 
 		<!--on authentication success goto main, else stay at signupFormState-->
-		<WhileTrue ux:Name="main" Value="{success}">
+		<WhileTrue ux:Name="main" Value="{loggedin}">
 			<Set state.Active="mainState"/>
 		</WhileTrue>
 		<WhileTrue ux:Name="signup" Value="{fail}">
