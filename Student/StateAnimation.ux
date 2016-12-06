@@ -8,6 +8,9 @@
 		<Set whiteRectCornerRadiusAttractor.Value="25"/>
 		<Change startPanel.IsEnabled="true" DelayBack="0" />
 		<Set moveLogo.Value="false" />
+		<Set loading.Value="false" />
+		<Set main.Value="false" />
+        <Toggle Target="signOutAnimation"/>            
 	</State>
 
 	<!--second state with signup form when signup button clicked-->

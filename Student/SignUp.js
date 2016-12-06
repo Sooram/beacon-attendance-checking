@@ -30,8 +30,7 @@ function isloggedin(){
 isloggedin();
 
 //triggered when user pressed singup done button
-var success = Observable();
-var fail = Observable();
+var loginfail = Observable();
 var name = Observable("");
 var student_id = Observable("");
 var email = Observable("");
@@ -43,20 +42,21 @@ function authenticate() {
     "student_id": student_id.value,
     "email": email.value,
   };
-  success.value = false;
-  fail.value = true;
   
   // Checking constraint
   if (name.value == ""){
     constraintErrMsg.value = "Please enter your name";
+    loginfail.value = true;
     return false;
   } 
   else if (!(/20\d{2}-\d{5}$/.test(student_id.value))){
     constraintErrMsg.value = "Please check your student id format";
+    loginfail.value = true;
     return false;
   }
   else if (!(/.+@snu[.]ac[.]kr$/.test(email.value))){
     constraintErrMsg.value = "Please check your SNU Email";
+    loginfail.value = true;
     return false;
   }
   else {
@@ -88,8 +88,7 @@ function authenticate() {
         })
         .then(function(){
           loggedin.value = true;
-          success.value = true;
-          fail.value = false;
+          loginfail.value = false;
           name.value = "";
           student_id.value = "";
           email.value = "";
@@ -104,8 +103,7 @@ function authenticate() {
 
 module.exports = {
   authenticate: authenticate,
-  success: success,
-  fail: fail,
+  loginfail: loginfail,
   constraintErrMsg: constraintErrMsg,
   name: name,
   student_id: student_id,
