@@ -12,7 +12,7 @@ var connection = Syncano({
 });
 var CourseObject = connection.DataObject;
 
-var studentId = Observable("");
+var courses = Observable({name: "No class today"});
 
 function getStudentId(){
 	var storage = require('FuseJS/Storage');
@@ -23,16 +23,15 @@ function getStudentId(){
 
 //TODO: integrating with attendance info
 function getTodaysCourse(){
-	day = (new Date()).toString().substring(0,3); //get today's day
-	list = Observable({name: "No class today"});
+	day = (new Date()).toString().substring(0,3); //get today's day like Mon, Tue, ...
 
 	CourseObject.please().filter({"students_list":{"_contains":[getStudentId()]}}).then(function(res, raw){
-		var arr = [];
+		arr = [];
 		if (res.length) {
 			res.forEach(function(course) {
 				if(course.day.includes(day)){
 					arr.push({ //if the student has this class today
-							time: course.start_time,
+						time: course.start_time,
 						name: course.course_name,
 						color: "#1e852f",
 						enter: "NA",
@@ -42,17 +41,15 @@ function getTodaysCourse(){
 					});
 				}
 			});
-			//list.replaceAll(arr);
+			courses.replaceAll(arr);
 		}})
 		.catch(function (reason) {
     		console.log("data load error: " + reason);
-    		arr = [{name: "Couldn't load courses"}];
+    		courses.value = {name: "Couldn't load courses"};
   		});
 }
-getTodaysCourse();
-var courses = Observable();
-courses.replaceAll(arr);
 
+getTodaysCourse();
 // color : green "#1e852f", "#ec0707", "#ff0"
 
 var isLoading = Observable(false);
