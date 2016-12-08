@@ -6,7 +6,7 @@ import android.os.Bundle;
 import android.content.DialogInterface;
 
 
-public class MyAlert extends Activity {
+public class BluetoothAlert extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

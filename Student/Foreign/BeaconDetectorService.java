@@ -34,8 +34,8 @@ import java.util.Date;
 import java.util.Calendar;
 import java.util.Iterator;
 
-public class ServiceTest extends Service implements BeaconConsumer{
-	protected static final String TAG = "ServiceTest";
+public class BeaconDetectorService extends Service implements BeaconConsumer{
+	protected static final String TAG = "Service";
 
 	private BluetoothAdapter mBluetoothAdapter;
     private BeaconManager beaconManager;
@@ -72,7 +72,7 @@ public class ServiceTest extends Service implements BeaconConsumer{
         beaconManager.getBeaconParsers().add(new BeaconParser()
             .setBeaconLayout("m:2-3=beac,i:4-19,i:20-21,i:22-23,p:24-24,d:25-25"));
         beaconManager.bind(this);
-        beaconManager.setBackgroundBetweenScanPeriod(1000);
+        beaconManager.setBackgroundBetweenScanPeriod(1000000);
 
         for(Course course: courseList) {
             course.setEnterTime("00:00");
@@ -104,20 +104,28 @@ public class ServiceTest extends Service implements BeaconConsumer{
                 Course monitoredCourse = courseList.get(findMonitoredRegion(region));
                 String enterTime = getCurrTime();
 
-                // 20분 전에 들어 온 것부터 끝나는 시간에 들어온 것까지 처리
-                // & 처음 들어왔거나 나간 후 20분이 지나서 다시 들어왔을 때
+                /*
+                 Only set enter time when entering occurred:
+                    20 min before 'start' ~ 'end' & first time 
+                    or re-entering after 20+ min
+                 23:40 ~ 00:20 is not handled. 
+                 Assume there's no class between those times.
+                 Ignore re-entering after short break.
+                */
                 if(timeDiff(monitoredCourse.end, enterTime) > 0 &&
                     timeDiff(monitoredCourse.start, enterTime) < 1200) {
                     if (timeDiff(enterTime, monitoredCourse.getExitTime()) > 1200) {
                         monitoredCourse.setEnterTime(enterTime);
-                        CallBack.callBackToUnoCheck(monitoredCourse);
+                        CallBack.callBackToUnoCheck(monitoredCourse, "enter");
                     }
-                    // 잠깐 나갔다 들어오는 것은 무시
                 }
 
                 // debug logs
+                Log.d(TAG, "---------------------------------------------");
                 Log.d(TAG, "I just saw a beacon for the first time!");
-                Log.d(TAG, "entered" + monitoredCourse.courseName + " at " + monitoredCourse.getEnterTime());
+                Log.d(TAG, "entered " + monitoredCourse.courseName + " at " + 
+                    monitoredCourse.getEnterTime());
+                Log.d(TAG, "---------------------------------------------");
             }
 
             @Override
@@ -129,16 +137,21 @@ public class ServiceTest extends Service implements BeaconConsumer{
                 Course monitoredCourse = courseList.get(findMonitoredRegion(region));
                 String exitTime = getCurrTime();
 
-                // 현재 시간에 해당하는 course만을 대상으로 나간 시간을 저장한다.
-                // 수업의 시작 시간부터 끝난 후 20분까지의 exit만 처리
+                /*
+                 Only set exit time when exitting occured:
+                 20 min before 'start' ~ 20 min after 'end'
+                */
                 if(timeDiff(timeAdd(monitoredCourse.end, 20), exitTime) > 0 &&
                         timeDiff(exitTime, timeAdd(monitoredCourse.start, -20)) > 0) {
                     monitoredCourse.setExitTime(exitTime);
-                    CallBack.callBackToUnoCheck(monitoredCourse);                   
+                    CallBack.callBackToUnoCheck(monitoredCourse, "exit");                   
                 }
                 // debug logs
+                Log.d(TAG, "---------------------------------------------");
                 Log.d(TAG, "I no longer see a beacon");
-                Log.d(TAG, "exited " + monitoredCourse.courseName + " at " + monitoredCourse.getExitTime());
+                Log.d(TAG, "exited " + monitoredCourse.courseName + " at " + 
+                    monitoredCourse.getExitTime());
+                Log.d(TAG, "---------------------------------------------");
             }
 
             @Override
@@ -156,7 +169,8 @@ public class ServiceTest extends Service implements BeaconConsumer{
         }
     }
 
-    // find the course whose region has the same identifier with 'region' and return the index of it
+    // find the course whose region has the same identifier with 'region' 
+    // and return the index of it
     public int findMonitoredRegion(Region region) {
         for(Course course : courseList) {
             if(course.region.hasSameIdentifiers(region)) {
@@ -210,7 +224,7 @@ public class ServiceTest extends Service implements BeaconConsumer{
     private boolean checkBluetooth() {
     	 if (!((BluetoothManager) getApplicationContext().getSystemService(
     	 				Context.BLUETOOTH_SERVICE)).getAdapter().isEnabled()){
-            Intent intent = new Intent(this, MyAlert.class);
+            Intent intent = new Intent(this, BluetoothAlert.class);
         	intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         	startActivity(intent);
             return false;

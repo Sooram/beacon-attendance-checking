@@ -69,7 +69,8 @@ namespace ForeignBeaconDetector
         }
 
         // Call JavaScript 'checkAttendance' function
-        public void CallCheckAttendance(string info1, string info2, string info3, string info4, string info5)
+        public void CallCheckAttendance(string info1, string info2, string info3, 
+                                        string info4, string info5)
         {
             debug_log("Module");
             _nativeEvent.RaiseAsync(info1, info2, info3, info4, info5);

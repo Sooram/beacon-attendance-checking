@@ -9,8 +9,8 @@
     "*",
     "*.js:Bundle",
     "Foreign/Course.java:Java:Android",
-    "Foreign/ServiceTest.java:Java:Android",
-    "Foreign/MyAlert.java:Java:Android",
+    "Foreign/BeaconDetectorService.java:Java:Android",
+    "Foreign/BluetoothAlert.java:Java:Android",
     "Foreign/CallBack.java:Java:Android"
   ]
 }

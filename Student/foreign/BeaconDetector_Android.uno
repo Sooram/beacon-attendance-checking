@@ -9,8 +9,8 @@ namespace ForeignBeaconDetector
 {
 	[Require("Gradle.Dependency","compile('com.android.support:appcompat-v7:24.2.0')")]
 	[Require("Gradle.Dependency","compile('org.altbeacon:android-beacon-library:2+')")]
-	[Require("AndroidManifest.ApplicationElement", "<activity android:name=\"com.android.beacondetector.MyAlert\" />")]
-	[Require("AndroidManifest.ApplicationElement", "<service android:name=\"com.android.beacondetector.ServiceTest\" />")]
+	[Require("AndroidManifest.ApplicationElement", "<activity android:name=\"com.android.beacondetector.BluetoothAlert\" />")]
+	[Require("AndroidManifest.ApplicationElement", "<service android:name=\"com.android.beacondetector.BeaconDetectorService\" />")]
 	[ForeignInclude(Language.Java, "android.util.Log")]
 	[ForeignInclude(Language.Java, "java.util.ArrayList")]
 	[ForeignInclude(Language.Java, "android.content.Intent")]
@@ -45,7 +45,8 @@ namespace ForeignBeaconDetector
 	    [Foreign(Language.Java)]
 	    public static Java.Object CreateJavaClass(Action unoAction)
 	    @{
-	        com.android.beacondetector.CallBack myClass = new com.android.beacondetector.CallBack(unoAction);
+	        com.android.beacondetector.CallBack myClass = 
+	        			new com.android.beacondetector.CallBack(unoAction);
 
 	        return myClass;
 	    @}
@@ -56,7 +57,8 @@ namespace ForeignBeaconDetector
 		public extern(Android) string GetInfo()
 		@{
 			String[] info = com.android.beacondetector.CallBack.getInfo();
-			String infoString = info[0] + "#" + info[1] + "#" + info[2] + "#" + info[3] + "#" + info[4];
+			String infoString = info[0] + "#" + info[1] + "#" + info[2] + "#" + 
+								info[3] + "#" + info[4];
 			android.util.Log.d("BeaconDetector_Android", infoString);
 
 			return infoString;
@@ -82,10 +84,10 @@ namespace ForeignBeaconDetector
 				android.util.Log.d("BeaconDetector_Android", course.courseName);
 			}
 
-			// Start activity
+			// Start activity passing the course list
 			android.content.Intent intent = 
 				new android.content.Intent(com.fuse.Activity.getRootActivity(), 
-					com.android.beacondetector.ServiceTest.class);
+					com.android.beacondetector.BeaconDetectorService.class);
 			intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         	android.os.Bundle bundle = new android.os.Bundle();
        	 	bundle.putParcelableArrayList("CourseList",courseList);

@@ -14,11 +14,20 @@ public class CallBack {
 
     // This method is triggered every detected enter/exit
     // Calls 'MyCallbackFunction()' 
-    public static void callBackToUnoCheck(Course course) {
-        String[] s = {course.courseName, course.start, course.end, course.getEnterTime(), course.getExitTime()};
-        info = s;
+    public static void callBackToUnoCheck(Course course, String enterOrExit) {
+        if(enterOrExit == "enter") {
+            String[] s = {"enter", course.courseName, course.start, course.end, 
+                        course.getEnterTime()};
+            info = s;
+        }
+        else {
+            String[] s = {"exit", course.courseName, course.start, course.end, 
+                     course.getExitTime()};
+            info = s;
+        }
 
-        Log.d("CallBack", info[0] + " " + info[1] + " " + info[2] + " " + info[3] + " " + info[4]);
+        Log.d("CallBack", info[0] + " " + info[1] + " " + info[2] + " " +
+             info[3] + " " + info[4]);
         
         _myCallbackFunction.run();
     }
