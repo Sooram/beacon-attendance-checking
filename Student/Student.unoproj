@@ -2,10 +2,15 @@
   "RootNamespace":"",
   "Packages": [
     "Fuse",
-    "FuseJS"
+    "FuseJS",
+    "Uno.Permissions"
   ],
   "Includes": [
     "*",
-    "*.js:Bundle"
+    "*.js:Bundle",
+    "Foreign/Course.java:Java:Android",
+    "Foreign/ServiceTest.java:Java:Android",
+    "Foreign/MyAlert.java:Java:Android",
+    "Foreign/CallBack.java:Java:Android"
   ]
 }

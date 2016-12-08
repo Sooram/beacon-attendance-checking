@@ -1,4 +1,5 @@
 var Observable = require('FuseJS/Observable');
+
 //Syncano course class
 var Syncano = require('syncano-js/dist/syncano.fuse.js');
 var ApiKeys = require("api-keys.js");
@@ -51,6 +52,62 @@ function getTodaysCourse(){
 
 getTodaysCourse();
 // color : green "#1e852f", "#ec0707", "#ff0"
+
+/////////////////////////////////////////////////////////////////////////
+var BeaconDetectorModule = require("BeaconDetectorModule");
+
+var courses = [{
+    name: "Programming Principles",
+    beaconId: "2F234454-CF6D-4A0F-ADF2-F4911BA9FFA6/1/1",
+    start: "09:00",
+    end: "11:00",
+    exit: "10:52",
+    absence: 23,
+    late: 2
+  },
+  {
+    name: "Operating System",
+    beaconId: "2F234454-CF6D-4A0F-ADF2-F4911BA9FFA6/1/2",
+    start: "00:40",
+    end: "01:30",
+    absence: 3,
+    late: 22
+  },
+  {
+    name: "Database",
+    beaconId: "DF7E1C79-43E9-44FF-886F-1D1F7DA6997A/1/2",
+    start: "12:30",
+    end: "13:30",
+    absence: 3,
+    late: 22
+  }];
+
+var makeCourseList = function() {  
+  for(var i = 0; i < courses.length; i++) {
+    var course = courses[i];
+    BeaconDetectorModule.pushCourse(course.name, course.beaconId, course.start, course.end);
+  }
+}
+ 
+var startActivity = function() {
+  BeaconDetectorModule.start();
+}
+
+makeCourseList();
+startActivity();
+
+var monitoredCourse = {
+  name: "",
+  start: "",
+  end: "",
+  enter: "",
+  exit: ""
+};
+
+BeaconDetectorModule.checkAttendance = function(name, start, end, enter, exit) {
+  console.log("check attendance called " + name + " " + start + " " + end + " " + enter + " " + exit);
+};
+/////////////////////////////////////////////////////////////////////////
 
 var isLoading = Observable(false);
 
