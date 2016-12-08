@@ -1,5 +1,60 @@
 var Observable = require('FuseJS/Observable');
 
+//Syncano course class
+var Syncano = require('syncano-js/dist/syncano.fuse.js');
+var ApiKeys = require("api-keys.js");
+var classname = "course";
+var connection = Syncano({
+    accountKey: ApiKeys.accountKey,
+    defaults: {
+      instanceName: ApiKeys.instanceName,
+      className: classname
+    }
+});
+var CourseObject = connection.DataObject;
+
+var courses = Observable({name: "No class today"});
+
+function getStudentId(){
+  var storage = require('FuseJS/Storage');
+  var userData = storage.readSync("filedb.txt");
+  var json = JSON.parse(userData);
+  return json["student_id"];
+}
+
+//TODO: integrating with attendance info
+function getTodaysCourse(){
+  console.log("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
+  console.log("getTodayCourse function called");
+  day = (new Date()).toString().substring(0,3); //get today's day like Mon, Tue, ...
+
+  CourseObject.please().filter({"students_list":{"_contains":[getStudentId()]}}).then(function(res, raw){
+    arr = [];
+    if (res.length) {
+      res.forEach(function(course) {
+        if(course.day.includes(day)){
+          arr.push({ //if the student has this class today
+            time: course.start_time,
+            name: course.course_name,
+            color: "#1e852f",
+            enter: "NA",
+            exit: "NA",
+            absence: course.num_absent,
+            late: "NA"
+          });
+        }
+      });
+      courses.replaceAll(arr);
+    }})
+    .catch(function (reason) {
+        console.log("data load error: " + reason);
+        courses.value = {name: "Couldn't load courses"};
+      });
+}
+
+getTodaysCourse();
+// color : green "#1e852f", "#ec0707", "#ff0"
+
 /////////////////////////////////////////////////////////////////////////
 var BeaconDetectorModule = require("BeaconDetectorModule");
 
@@ -57,60 +112,6 @@ BeaconDetectorModule.checkAttendance = function(enterOrExit, name, start, end, t
               " " + end + " " + time);
 };
 /////////////////////////////////////////////////////////////////////////
-//Syncano course class
-var Syncano = require('syncano-js/dist/syncano.fuse.js');
-var ApiKeys = require("api-keys.js");
-var classname = "course";
-var connection = Syncano({
-    accountKey: ApiKeys.accountKey,
-    defaults: {
-      instanceName: ApiKeys.instanceName,
-      className: classname
-    }
-});
-var CourseObject = connection.DataObject;
-
-var courses = Observable({name: "No class today"});
-
-function getStudentId(){
-  var storage = require('FuseJS/Storage');
-  var userData = storage.readSync("filedb.txt");
-  var json = JSON.parse(userData);
-  return json["student_id"];
-}
-
-//TODO: integrating with attendance info
-function getTodaysCourse(){
-  console.log("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
-  console.log("getTodayCourse function called");
-  day = (new Date()).toString().substring(0,3); //get today's day like Mon, Tue, ...
-
-  CourseObject.please().filter({"students_list":{"_contains":[getStudentId()]}}).then(function(res, raw){
-    arr = [];
-    if (res.length) {
-      res.forEach(function(course) {
-        if(course.day.includes(day)){
-          arr.push({ //if the student has this class today
-            time: course.start_time,
-            name: course.course_name,
-            color: "#1e852f",
-            enter: "NA",
-            exit: "NA",
-            absence: course.num_absent,
-            late: "NA"
-          });
-        }
-      });
-      courses.replaceAll(arr);
-    }})
-    .catch(function (reason) {
-        console.log("data load error: " + reason);
-        courses.value = {name: "Couldn't load courses"};
-      });
-}
-
-getTodaysCourse();
-// color : green "#1e852f", "#ec0707", "#ff0"
 
 var isLoading = Observable(false);
 
