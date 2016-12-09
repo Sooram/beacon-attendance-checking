@@ -1,4 +1,6 @@
 var Observable = require('FuseJS/Observable');
+var signup = require('/SignUp.js');
+
 //Syncano course class
 var Syncano = require('syncano-js/dist/syncano.fuse.js');
 var ApiKeys = require("api-keys.js");
@@ -41,6 +43,8 @@ function getTodaysCourse(){
 					});
 				}
 			});
+		}
+		if(arr.length != 0){
 			courses.replaceAll(arr);
 		}})
 		.catch(function (reason) {
@@ -48,8 +52,9 @@ function getTodaysCourse(){
     		courses.value = {name: "Couldn't load courses"};
   		});
 }
-
-getTodaysCourse();
+if (signup.isloggedin()){
+	getTodaysCourse();
+}
 // color : green "#1e852f", "#ec0707", "#ff0"
 
 var isLoading = Observable(false);
