@@ -94,17 +94,20 @@
 				<Circle ux:Name="Attendance" Color="{Property CircleColor}" Width="30" Height="30" Alignment="Right">
 					<DropShadow />
 					<Clicked>
-						<Scale Factor="0.8" Duration=".15" Easing="CubicInOut" />
+						<Scale Factor="0.8" Duration=".15" Easing="CubicInOut" 
+						/>
+						 <Callback Handler="{toggleIsRed}"/>
+						 <Callback Handler="{toggleIsRed}"/>
 					</Clicked>
 				</Circle>															
 			</DockPanel>			
 		</Rectangle> 
 
-		<WhileTrue ux:Name="redState" Value="{toggleIsRed}">
+		<WhileTrue ux:Name="redState" Value="{isRed}">
 			<Change Attendance.Color="#ec0707" Duration="0.2" />
 			
 		</WhileTrue>
-		<WhileTrue ux:Name="greenState" Value="{toggleIsGreen}">
+		<WhileTrue ux:Name="greenState" Value="{isGreen}">
 			<Change Attendance.Color="#1e852f" Duration="0.2"/>
 		</WhileTrue>						
 	</Panel>
