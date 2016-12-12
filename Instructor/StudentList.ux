@@ -100,11 +100,11 @@
 			</DockPanel>			
 		</Rectangle> 
 
-		<WhileTrue ux:Name="redState" Value="{isRed}">
+		<WhileTrue ux:Name="redState" Value="{toggleIsRed}">
 			<Change Attendance.Color="#ec0707" Duration="0.2" />
 			
 		</WhileTrue>
-		<WhileTrue ux:Name="greenState" Value="{isGreen}">
+		<WhileTrue ux:Name="greenState" Value="{toggleIsGreen}">
 			<Change Attendance.Color="#1e852f" Duration="0.2"/>
 		</WhileTrue>						
 	</Panel>
